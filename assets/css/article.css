@@ -1,0 +1,50 @@
+/* ============================================================
+   ARTICLE WIDTH CUSTOMIZATION (Desktop + Tablet)
+============================================================ */
+
+/* Desktop */
+@media screen and (min-width: 981px) {
+    #main > article {
+        width: 90% !important;
+        max-width: 1400px !important;
+        margin: 0 auto !important;
+        padding: 2rem 2rem !important;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 980px) {
+    #main > article {
+        width: 90% !important;
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding: 2.5rem !important;
+    }
+}
+
+/* Mobile (leave almost as-is) */
+@media screen and (max-width: 767px) {
+    #main > article {
+        width: 90% !important;
+        padding: 1.5rem !important;
+    }
+}
+
+/* ============================================================
+   IMAGE CONTROL (About, Research, etc.)
+============================================================ */
+
+/* Resize images inside articles */
+#main article img.custom-img {
+    width: 60%;                  /* adjust size */
+    max-width: 500px;            /* hard limit */
+    border-radius: 12px;         /* rounded corners */
+    display: block;
+    margin: 0 auto 2rem auto;    /* center + spacing below */
+}
+
+/* For full-width banner-style images */
+#main article img.fullwidth-img {
+    width: 100%;
+    border-radius: 0.75rem;
+}
