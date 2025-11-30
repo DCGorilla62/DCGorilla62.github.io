@@ -109,6 +109,11 @@ body.is-preload *, body.is-preload *:before, body.is-preload *:after {
     transition: none !important;
 }
 
+body.is-article-visible #site-header {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* Type */
 
 html {
@@ -119,7 +124,7 @@ html {
 }
 
 article {
-  scroll-margin-top: 80px; /* Match your header height */
+    scroll-margin-top: 80px; /* Match your header height */
 }
 @media screen and (max-width: 1680px) {
 
@@ -1208,7 +1213,9 @@ body.is-preload #bg:before {
     width: 100%;
     padding: 4rem 2rem;
     z-index: 3;
+    /* padding-top: 60px; /* same as header height */;
 }
+
 
 #wrapper:before {
     content: '';
@@ -1330,6 +1337,10 @@ body.is-preload #bg:before {
 
 #header .content .inner > :last-child {
     margin-bottom: 0;
+}
+
+#header .inner p {
+    margin-bottom: 2em; /* Adds space after the paragraph */
 }
 
 #header .content p {
@@ -1506,7 +1517,6 @@ body.is-preload #header .content .inner {
 }
 
 /* Main */
-
 #main {
     -moz-flex-grow: 1;
     -webkit-flex-grow: 1;
@@ -1628,7 +1638,6 @@ body.is-preload #header .content .inner {
 }
 
 /* Footer */
-
 #footer {
     -moz-transition: -moz-transform 0.325s ease-in-out, -moz-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
     -webkit-transition: -webkit-transform 0.325s ease-in-out, -webkit-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
@@ -1665,34 +1674,54 @@ body.is-preload #footer {
 }
 
 /* === Custom Header Styles (Dennis) === */
+.main-nav {
+    display: none;
+}
+
 #site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    z-index: 10000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(34, 34, 34, 0.8); /* Slight transparency */
+    background: rgba(34, 34, 34, 0.85);
     color: white;
-    padding: 10px 10px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-    font-size: 1em;
+    padding: 0 1.5em;
+    font-size: 1.1em;
     border-bottom: 2px solid #fff;
+    transform: translateY(-100%);
+    animation: slideInHeader 0.6s ease-out forwards;
+    will-change: transform;
 }
 
+#nav-menu {
+    display: none; /* hide the full menu */
+}
+
+/* Slide-in keyframes */
+@keyframes slideInHeader {
+    to {
+	transform: translateY(0);
+    }
+}
+
+/* Layout regions */
 .header-left,
 .header-center,
 .header-right {
     display: flex;
     align-items: center;
-    
 }
+
 
 .header-center {
     flex: 1;
     justify-content: center;
-    gap: 40px;
-    /* font-weight: bold; */
+    gap: 10px;
 }
 
 .header-center a {
@@ -1700,13 +1729,177 @@ body.is-preload #footer {
     padding: 0 12px;
     text-decoration: none;
     color: white;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
+
+.header-center a:hover {
+    color: #e63946;
+    transform: scale(1.2);
+}
+
 .header-right a {
     margin-left: 10px;
+    transform: scale(1);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.header-right a:hover {
+    color: #ff3860;
+    transform: scale(1.2);
 }
 
 .site-name {
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.5em;
 }
 
+/* === Custom adjustments for main content === */
+
+/* Header content container - flex column and center */
+#header .content .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* center horizontally */
+    gap: 1em;             /* consistent vertical spacing */
+    padding: 2em 1em;     /* some padding for breathing room */
+    text-align: center;   /* center text */
+}
+
+/* Personal photo styling - responsive, centered with shadow */
+.personal-photo {
+    width: 280px;
+    max-width: 90vw;      /* never wider than 90% of viewport */
+    height: auto;         /* maintain aspect ratio */
+    aspect-ratio: 280 / 330; /* keep original shape ratio */
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;       /* center horizontally */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* subtle shadow */
+    transition: box-shadow 0.3s ease;
+}
+
+.personal-photo:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25); /* slightly stronger on hover */
+}
+
+/* Intro images container - flex with gap */
+.intro-images {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1em;
+    justify-content: center; /* center images in container */
+    flex-wrap: wrap;         /* wrap on smaller screens */
+}
+
+/* Center CV download button */
+.cv-download {
+    text-align: center;
+    margin-ptop: 1em;
+}
+
+/* Add vertical margin to major headings and paragraphs for rhythm */
+h1, h2, h3, h5 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1em;
+    max-width: 600px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+    .intro-images {
+	flex-direction: column;
+	gap: 0.5em;
+    }
+
+    .intro-images img {
+	width: 100%;
+	height: auto;
+    }
+}
+
+#footer {
+    text-align: center !important;
+}
+
+#footer p {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+/* #header { */
+/*   border-top: 2px solid #444;   /\* example line on top *\/ */
+/*   border-bottom: 2px solid #444; /\* example line on bottom *\/ */
+/*   padding-top: 1em;              /\* add padding above the content *\/ */
+/*   padding-bottom: 1em;           /\* add padding below the content *\/ */
+/* } */
+
+#header .content {
+    /* padding-top: 1em; */
+    padding-bottom: 1em;
+}
+
+@media (max-width: 768px)
+{
+    
+    #main-nav {
+	display: none;
+    }
+}
+/* @media screen and (max-width: 480px) {
+@media screen and (max-width: 1680px) {
+@media screen and (max-width: 736px) {
+@media screen and (max-width: 980px) {
+@media screen and (max-width: 360px) {
+
+
+/* Small screens (tablets and phones) */
+/* @media screen and (max-width: 768px) {*/
+@media screen and (max-width: 468px) {
+    #site-header {
+
+	/* position: fixed;
+	/* top: 0; */
+	/* left: 0; */
+	/* right: 0; */
+	/* height: 50px; */
+	/* z-index: 10000; */
+	/* display: flex; */
+	/* justify-content: space-between; */
+	/* align-items: center; */
+	/* background: rgba(34, 34, 34, 0.85); */
+	/* color: white; */
+	/* padding: 0 1.5em; */
+	/* font-size: 1.1em; */
+	/* border-bottom: 2px solid #fff; */
+	/* transform: translateY(-100%); */
+	/* animation: slideInHeader 0.6s ease-out forwards; */
+	/* will-change: transform; */
+	
+	display: flex;
+	/* font-size: 0.6em;
+	height: 50px;
+	padding: 0 20px;
+    }*/
+	.site-name {
+	    display: none;
+	}
+
+	.header-center {
+	    display: none; /* hide the full menu */
+	}
+	.main-title {
+	    font-size: 0.9em;
+	}
+	
+	#hamburger {
+	    display: block; /* show hamburger icon */
+	    /* cursor: pointer; */
+	}
+    }
+}   
