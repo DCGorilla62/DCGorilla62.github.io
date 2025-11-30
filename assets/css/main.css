@@ -1673,617 +1673,237 @@ body.is-preload #footer {
     opacity: 0;
 }
 
-/* === Custom Header Styles (Dennis) === */
-.main-nav {
-    display: none;
-}
 
-#site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    z-index: 10000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(34, 34, 34, 0.85);
-    color: white;
-    padding: 0 1.5em;
-    font-size: 1.1em;
-    border-bottom: 2px solid #fff;
-    transform: translateY(-100%);
-    animation: slideInHeader 0.6s ease-out forwards;
-    will-change: transform;
-}
+/* ============================================================
+   CUSTOM LAYOUT — NON-HEADER STYLES (SAFE TO KEEP IN main.css)
+   These do NOT affect header, tablet, or mobile navigation.
+   They ONLY style your photo, hero content, and intro images.
+============================================================ */
 
-#nav-menu {
-    display: none; /* hide the full menu */
-}
-
-/* Slide-in keyframes */
-@keyframes slideInHeader {
-    to {
-	transform: translateY(0);
-    }
-}
-
-/* Layout regions */
-.header-left,
-.header-center,
-.header-right {
-    display: flex;
-    align-items: center;
-}
-
-
-.header-center {
-    flex: 1;
-    justify-content: center;
-    gap: 10px;
-}
-
-.header-center a {
-    font-size: 1.2em;
-    padding: 0 12px;
-    text-decoration: none;
-    color: white;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.header-center a:hover {
-    color: #e63946;
-    transform: scale(1.2);
-}
-
-.header-right a {
-    margin-left: 10px;
-    transform: scale(1);
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.header-right a:hover {
-    color: #ff3860;
-    transform: scale(1.2);
-}
-
-.site-name {
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-/* === Custom adjustments for main content === */
-
-/* Header content container - flex column and center */
-#header .content .inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;  /* center horizontally */
-    gap: 1em;             /* consistent vertical spacing */
-    padding: 2em 1em;     /* some padding for breathing room */
-    text-align: center;   /* center text */
-}
-
-/* Personal photo styling - responsive, centered with shadow */
+/* Rounded personal photo */
 .personal-photo {
     width: 280px;
-    max-width: 90vw;      /* never wider than 90% of viewport */
-    height: auto;         /* maintain aspect ratio */
-    aspect-ratio: 280 / 330; /* keep original shape ratio */
+    max-width: 90vw;
+    height: auto;
+    aspect-ratio: 280 / 330;
     object-fit: cover;
     border-radius: 50%;
     display: block;
-    margin: 0 auto;       /* center horizontally */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* subtle shadow */
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     transition: box-shadow 0.3s ease;
 }
 
 .personal-photo:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.25); /* slightly stronger on hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
 }
 
-/* Intro images container - flex with gap */
+/* Prevent hero text from being cut off */
+#header .content .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em;
+    text-align: center;
+    padding: 2.25em 1.25em;
+}
+
+/* Extra spacing for hero paragraph */
+#header .inner p {
+    margin-bottom: 1.5em;
+}
+
+/* Intro images section */
 .intro-images {
     display: flex;
-    gap: 10px;
-    margin-bottom: 1em;
-    justify-content: center; /* center images in container */
-    flex-wrap: wrap;         /* wrap on smaller screens */
+    gap: 12px;
+    margin-bottom: 1.25em;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-/* Center CV download button */
-.cv-download {
-    text-align: center;
-    margin-ptop: 1em;
+.intro-images img {
+    border-radius: 4px;
+    max-width: 100%;
+    height: auto;
 }
 
-/* Add vertical margin to major headings and paragraphs for rhythm */
-h1, h2, h3, h5 {
-    margin-top: 0;
-    margin-bottom: 0.5em;
-}
-
-p {
-    margin-top: 0;
-    margin-bottom: 1em;
-    max-width: 600px;
-}
-
-/* Responsive tweaks */
+/* Mobile layout for intro images */
 @media (max-width: 480px) {
     .intro-images {
-	flex-direction: column;
-	gap: 0.5em;
+        flex-direction: column;
+        gap: 0.75em;
     }
 
     .intro-images img {
-	width: 100%;
-	height: auto;
+        width: 100%;
     }
 }
 
-#footer {
-    text-align: center !important;
+
+/* ============================================
+   CUSTOM SPACING FOR FIXED #site-header
+   (Mobile + Tablet)
+============================================ */
+
+/* MOBILE: small top padding so hero sits just below fixed header */
+@media screen and (max-width: 767px) {
+
+    /* Make room for 50px header, but not too much */
+    #wrapper {
+        padding-top: 60px !important;  /* adjust to taste: 50–70px */
+    }
+
+    /* Kill Dimension's giant hero spacing */
+    #header > * {
+        margin-top: 1rem !important;
+    }
+
+    #header > *:before {
+        display: none !important;
+    }
+
+    #header .content .inner {
+        padding-top: 1rem !important;
+        padding-bottom: 1.5rem !important;
+    }
 }
 
-#footer p {
-    margin: 0 auto;
-    display: inline-block;
+/* TABLET: similar idea but a bit more breathing room */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    /* Slightly more top padding for the bigger layout */
+    #wrapper {
+        padding-top: 70px !important;  /* tweak 60–80px if needed */
+    }
+
+    #header > * {
+        margin-top: 1.25rem !important;
+    }
+
+    #header > *:before {
+        display: none !important;
+    }
+
+    #header .content .inner {
+        padding-top: 1.25rem !important;
+        padding-bottom: 2rem !important;
+    }
 }
 
-/* #header { */
-/*   border-top: 2px solid #444;   /\* example line on top *\/ */
-/*   border-bottom: 2px solid #444; /\* example line on bottom *\/ */
-/*   padding-top: 1em;              /\* add padding above the content *\/ */
-/*   padding-bottom: 1em;           /\* add padding below the content *\/ */
+
+/* ============================================================
+   FINAL OVERRIDE — REMOVE HUGE DIMENSION HEADER SPACING
+   Applied last so it always wins.
+============================================================ */
+
+/* MOBILE + TABLET (fix top hero spacing) */
+@media screen and (max-width: 1024px) {
+
+    /* Reduce giant spacing between hero elements */
+    #header > * {
+        margin-top: 0.5rem !important;  /* was 3.5rem */
+    }
+
+    #header > *:before {
+        display: none !important;
+    }
+
+    /* Reduce hero inner padding so content isn't pushed down */
+    #header .content .inner {
+        padding-top: 0.75rem !important;
+        padding-bottom: 1.25rem !important;
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+    }
+
+    /* Reduce wrapper padding under fixed #site-header */
+    #wrapper {
+        padding-top: 60px !important;  /* adjust 50–70px */
+    }
+}
+
+/* TABLET ONLY — small adjustment */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #wrapper {
+        padding-top: 70px !important;
+    }
+}
+
+/* /\* ============================================================ */
+/*    REAL FIX — Kill flex spacing that pushes hero downward */
+/*    Applies only when using fixed #site-header (mobile + tablet) */
+/* ============================================================ *\/ */
+
+/* @media screen and (max-width: 1024px) { */
+/*     #wrapper { */
+/*         justify-content: flex-start !important; /\* stop huge vertical spacing *\/ */
+/*         padding-top: 80px !important;           /\* room for your fixed header *\/ */
+/*     } */
 /* } */
 
-#header .content {
-    /* padding-top: 1em; */
-    padding-bottom: 1em;
-}
+/* ============================================================
+   FINAL SPACING TUNING — Tablet good, Mobile tighter
+============================================================ */
 
-@media (max-width: 768px)
-{
-    
-    #main-nav {
-	display: none;
+/* MOBILE (≤ 767px): tighter space under fixed header */
+@media screen and (max-width: 767px) {
+    #wrapper {
+        justify-content: flex-start !important;
+        padding-top: 0px !important;   /* ↓ reduced from 80px */
     }
 }
-/* @media screen and (max-width: 480px) {
-@media screen and (max-width: 1680px) {
-@media screen and (max-width: 736px) {
+
+/* TABLET (768–1024px): keep the spacing you liked */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #wrapper {
+        justify-content: flex-start !important;
+        padding-top: 0px !important;   /* keep this */
+    }
+}
+
+/* ================================================
+   HERO SPACING FIXES (Mobile + Tablet)
+================================================ */
+
+/* Reduce internal hero padding and margin on mobile/tablet */
 @media screen and (max-width: 980px) {
-@media screen and (max-width: 360px) {
-
-
-/* Small screens (tablets and phones) */
-/* @media screen and (max-width: 768px) {*/
-@media screen and (max-width: 468px) {
-    #site-header {
-
-	/* position: fixed;
-	/* top: 0; */
-	/* left: 0; */
-	/* right: 0; */
-	/* height: 50px; */
-	/* z-index: 10000; */
-	/* display: flex; */
-	/* justify-content: space-between; */
-	/* align-items: center; */
-	/* background: rgba(34, 34, 34, 0.85); */
-	/* color: white; */
-	/* padding: 0 1.5em; */
-	/* font-size: 1.1em; */
-	/* border-bottom: 2px solid #fff; */
-	/* transform: translateY(-100%); */
-	/* animation: slideInHeader 0.6s ease-out forwards; */
-	/* will-change: transform; */
-	
-	display: flex;
-	/* font-size: 0.6em;
-	height: 50px;
-	padding: 0 20px;
-    }*/
-	.site-name {
-	    display: none;
-	}
-
-	.header-center {
-	    display: none; /* hide the full menu */
-	}
-	.main-title {
-	    font-size: 0.9em;
-	}
-	
-	#hamburger {
-	    display: block; /* show hamburger icon */
-	    /* cursor: pointer; */
-	}
+    #header .content .inner {
+        padding-top: 0.25rem !important;
+        padding-bottom: 1.25rem !important;
     }
-}   
 
-
-/* ============================================================
-   GLOBAL DEFAULTS
-============================================================ */
-#mobile-menu { display: none; }
-.tablet-nav { display: none; }
-.tablet-icons { display: none; }
-#hamburger-button { display: none; }
-.header-left .site-name { display: none; }
-
-/* Hide tablet nav for desktop */
-@media screen and (min-width: 1025px) {
-    .tablet-nav, .tablet-icons { display: none !important; }
+    #header > * {
+        margin-top: 0 !important;
+    }
 }
 
-/* ============================================================
-   MOBILE ( <= 767px )
-============================================================ */
+/* Remove gap between fixed header and hero on mobile */
 @media screen and (max-width: 767px) {
-
-    /* Hamburger visible (left) */
-    #hamburger-button {
-        display: block;
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        font-size: 1.8rem;
-        color: #fff;
-        cursor: pointer;
-    }
-
-    /* Site name next to hamburger */
-    .header-left .site-name {
-        display: block;
-        margin-left: 55px;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #fff;
-    }
-
-    /* Remove desktop & tablet nav */
-    .desktop-nav, .tablet-nav, .tablet-icons {
-        display: none !important;
-    }
-
-    /* Mobile menu drawer */
-    #mobile-menu {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: rgba(0,0,0,0.95);
-        text-align: center;
-        z-index: 9999;
-    }
-
-    #mobile-menu a {
-        display: block;
-        padding: 1rem;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        font-size: 1.2rem;
-        color: #fff;
-    }
-
-    /* Remove hero name on mobile */
-    .hero-name {
-        display: none;
-    }
-}
-
-/* ============================================================
-   TABLET / IPAD (768–1024px)
-============================================================ */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-
-    /* Hide mobile & desktop header parts */
-    #hamburger-button { display: none; }
-    .header-left .site-name { display: none; }
-    .desktop-nav { display: none; }
-
-    /* SHOW tablet nav + icons */
-    .tablet-nav {
-        display: flex;
-        gap: 1.8rem;
-        align-items: center;
-        padding-left: 1.5rem;
-        white-space: nowrap;      /* <-- prevents wrapping (your choice B) */
-    }
-
-    .tablet-icons {
-        display: flex;
-        gap: 1rem;
-        position: absolute;
-        right: 1.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .tablet-icons a {
-        font-size: 1.4rem;
-        color: #fff;
-    }
-
-    /* Hero name IS visible */
-    .hero-name {
-        display: block;
-    }
-}
-
-/* ============================================================
-   DESKTOP ( >= 1025px )
-   (unchanged original HTML5UP layout)
-============================================================ */
-@media screen and (min-width: 1025px) {
-    #hamburger-button { display: none !important; }
-    #mobile-menu { display: none !important; }
-    .header-left .site-name { display: block; }
-    .hero-name { display: block; }
-}
-
-
-
-/* FORCE mobile name to show */
-@media screen and (max-width: 767px) {
-
-    .header-left .site-name {
-        display: block !important;
-        margin-left: 55px;
-        font-size: 1.15rem;
-        font-weight: 600;
-        white-space: nowrap;
-    }
-}
-
-/* Improve iPad navigation fit */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-
-    .tablet-nav {
-        display: flex;
-        align-items: center;
-
-        /* Critical shrink fixes */
-        gap: 0.9rem;                /* Smaller spacing between items */
-        font-size: 0.85rem;         /* Smaller text */
-        letter-spacing: 0;          /* Remove extra spacing */
-        flex-shrink: 1;             /* Allow nav items to shrink */
-        white-space: nowrap;        /* Do not wrap */
-        overflow: hidden;           /* Prevent overflow */
-        text-overflow: ellipsis;
-    }
-
-    /* Make individual links shrink too */
-    .tablet-nav a {
-        flex-shrink: 1;
-        min-width: 0;
-        padding: 0;
-    }
-
-    /* Push icons right */
-    .tablet-icons {
-        gap: 0.7rem;
+    #header {
+        margin-top: 0 !important;
+        position: relative;
+        top: -1.5rem;   /* adjust to taste */
     }
 }
 
 
-/* ============================================================
-   FIX 1 — force mobile name to appear (override all previous)
-============================================================ */
-@media screen and (max-width: 767px) {
+/* ================================================
+   Debug 
+================================================ */
 
-    /* Kill ANY previous rule hiding the name */
-    .header-left .site-name,
-    #site-header .site-name {
-        display: block !important;
-        margin-left: 48px !important;
-        font-size: 1.2rem !important;
-        font-weight: 600 !important;
-        color: #fff !important;
-        white-space: nowrap !important;
-    }
-}
+/* /\* Optional debugging outline *\/ */
+/* @media screen and (max-width: 767px) */
+/* { */
+/*     #header { border: 5px solid red !important; } */
+/* } */
 
-/* ============================================================
-   FIX 2 — shrink iPad nav so it fits on one line
-============================================================ */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+/* @media screen and (min-width: 768px) and (max-width: 1024px) */
+/* { */
+/*         #header { border: 5px solid red !important; } */
+/* } */
 
-    /* Make sure only tablet nav is shown */
-    .desktop-nav,
-    .header-center {
-        display: none !important;
-    }
-
-    /* Tablet nav cleanup */
-    .tablet-nav {
-        display: flex !important;
-        align-items: center;
-        gap: 0.6rem !important;
-        font-size: 0.8rem !important;   /* smaller */
-        letter-spacing: 0 !important;
-        white-space: nowrap !important;
-        flex-shrink: 1 !important;
-        padding-left: 1rem !important;
-    }
-
-    .tablet-nav a {
-        padding: 0 !important;
-        margin: 0 !important;
-        flex-shrink: 1 !important;
-        min-width: 0 !important;
-        font-size: 0.8rem !important;
-    }
-
-    /* Tablet icons refined */
-    .tablet-icons {
-        display: flex !important;
-        gap: 0.6rem !important;
-        right: 1rem !important;
-    }
-
-    .tablet-icons a {
-        font-size: 1.2rem !important;
-    }
-
-    /* Hero name visible on tablet */
-    .hero-name {
-        display: block !important;
-    }
-}
-
-/* ============================================================
-   MOBILE FIX — name right-aligned + full-height sizing
-============================================================ */
-@media screen and (max-width: 767px) {
-
-    /* Position the name on the right */
-    .header-left .site-name,
-    #site-header .site-name {
-        position: absolute !important;
-        right: 12px !important;
-        left: auto !important;
-        margin-left: 0 !important;
-
-        /* Larger size to fill header */
-        font-size: 1.35rem !important;
-        line-height: 50px !important;
-        height: 50px !important;
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    /* Ensure hamburger stays on left */
-    #hamburger-button {
-        left: 12px !important;
-    }
-}
-
-/* ============================================================
-   IPAD FIX — left-align nav + increase text size
-============================================================ */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-
-    /* Left-align header content */
-    #site-header {
-        justify-content: flex-start !important;
-    }
-
-    /* NAV should hug the left */
-    .tablet-nav {
-        display: flex !important;
-        justify-content: flex-start !important;
-        align-items: center;
-        gap: 1.2rem !important;
-
-        /* Larger text */
-        font-size: 1.05rem !important;
-        letter-spacing: 0.05rem !important;
-
-        padding-left: 1rem !important;
-        white-space: nowrap !important;
-        flex-shrink: 1 !important;
-    }
-
-    /* Let links grow slightly */
-    .tablet-nav a {
-        font-size: 1.05rem !important;
-        padding: 0 !important;
-        min-width: 0 !important;
-        flex-shrink: 1;
-    }
-
-    /* Icons stay on the right */
-    .tablet-icons {
-        display: flex !important;
-        position: absolute;
-        right: 1.2rem !important;
-        top: 50%;
-        transform: translateY(-50%);
-        gap: 0.8rem !important;
-    }
-
-    .tablet-icons a {
-        font-size: 1.45rem !important;
-    }
-}
-
-/* ============================================================
-   IPAD FIX v2 — larger nav text + hover scaling + color
-============================================================ */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-
-    /* Make header content left-aligned */
-    #site-header {
-        justify-content: flex-start !important;
-    }
-
-    /* Tablet Navigation */
-    .tablet-nav {
-        display: flex !important;
-        justify-content: flex-start !important;
-        align-items: center;
-        gap: 1.4rem !important;
-
-        /* larger size */
-        font-size: 1.25rem !important;
-        letter-spacing: 0.05rem !important;
-        white-space: nowrap !important;
-    }
-
-    .tablet-nav a {
-        font-size: 1.25rem !important;
-        color: #fff;
-        transition: color 0.2s ease, transform 0.2s ease;
-        padding: 0 !important;
-        margin: 0 !important;
-        min-width: 0 !important;
-    }
-
-    /* Hover effect — red + slightly larger */
-    .tablet-nav a:hover {
-        color: #ff3860 !important;
-        transform: scale(1.18);
-    }
-
-    /* Tablet Social Icons (restore all 4) */
-    .tablet-icons {
-        display: flex !important;
-        gap: 1.2rem !important;
-        position: absolute;
-        right: 1.2rem;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .tablet-icons a {
-        font-size: 1.55rem !important;
-        color: #fff;
-        transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .tablet-icons a:hover {
-        color: #ff3860 !important;
-        transform: scale(1.25);
-    }
-
-    /* Make hero name visible */
-    .hero-name {
-        display: block !important;
-    }
-}
-
-/* ============================================================
-   DESKTOP FIX — ensure original social icons show again
-============================================================ */
-@media screen and (min-width: 1025px) {
-    .header-right {
-        display: flex !important;
-    }
-}
+/* @media screen and (min-width: 1024px) */
+/* { */
+/*     #header { border: 5px solid red !important; } */
+/* } */

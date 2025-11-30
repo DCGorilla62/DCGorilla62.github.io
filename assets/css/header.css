@@ -1,0 +1,301 @@
+/* ============================================================
+   HEADER SYSTEM — Custom Responsive Layout for Dennis
+   Dimension core CSS remains untouched.
+============================================================ */
+
+/* Hide these by default (explicitly shown in breakpoints) */
+#hamburger-button,
+.tablet-nav,
+.tablet-icons,
+#mobile-menu {
+    display: none;
+}
+
+/* Base header wrapper */
+#site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 1.5rem;
+    background: rgba(34,34,34,0.85);
+    border-bottom: 2px solid #fff;
+    color: #fff;
+
+    animation: slideInHeader 0.6s ease-out forwards;
+    transform: translateY(-100%);
+
+    /* Always above Dimension */
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+}
+
+@keyframes slideInHeader {
+    to { transform: translateY(0); }
+}
+
+/* Shared header regions */
+.header-left,
+.header-center,
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Desktop name */
+.site-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Desktop nav */
+.desktop-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.desktop-nav a {
+    font-size: 1.2rem;
+    color: #fff;
+    padding: 0 10px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.desktop-nav a:hover {
+    color: #e63946;
+    transform: scale(1.18);
+}
+
+/* Desktop icons */
+.desktop-icons a {
+    margin-left: 12px;
+    font-size: 1.4rem;
+    color: #fff;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.desktop-icons a:hover {
+    color: #ff3860;
+    transform: scale(1.25);
+}
+
+/* ============================================================
+   MOBILE ( <= 767px )
+============================================================ */
+@media screen and (max-width: 767px) {
+
+    /* Hide desktop & tablet UI */
+    .desktop-nav,
+    .desktop-icons,
+    .tablet-nav,
+    .tablet-icons {
+        display: none !important;
+    }
+
+    /* Hamburger visible on left */
+    #hamburger-button {
+        display: block;
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #fff;
+        cursor: pointer;
+        pointer-events: auto !important;
+        z-index: 100001;
+    }
+
+    /* Name aligned right */
+    .header-left .site-name {
+        display: block !important;
+        position: absolute;
+        right: 14px;
+        top: 0;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.35rem;
+        font-weight: 600;
+        pointer-events: auto !important;
+        z-index: 100001;
+    }
+
+    /* Mobile dropdown menu */
+    #mobile-menu {
+        display: none;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.95);
+        padding-top: 0.5rem;
+        z-index: 100000;
+        text-align: center;
+        pointer-events: auto !important;
+        opacity: 1;
+        transition: opacity 0.25s ease;
+    }
+
+    #mobile-menu a {
+        display: block;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        font-size: 1.25rem;
+        color: #fff;
+        text-decoration: none;
+        pointer-events: auto !important;
+    }
+
+    #mobile-menu a:hover {
+        background: rgba(255,255,255,0.08);
+    }
+
+    /* Hide mobile hero name */
+    .hero-name {
+        display: none !important;
+    }
+}
+
+/* ============================================================
+   TABLET / IPAD (768–1024px)
+============================================================ */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    /* Hide desktop + mobile elements */
+    .desktop-nav,
+    .desktop-icons,
+    #hamburger-button,
+    .header-left .site-name {
+        display: none !important;
+    }
+
+    /* Align nav left */
+    #site-header {
+        justify-content: flex-start !important;
+        pointer-events: auto !important;
+    }
+
+    .header-center {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: flex-start !important;
+        align-items: center;
+    }
+
+    /* Tablet nav */
+    .tablet-nav {
+        display: flex !important;
+        justify-content: flex-start !important;
+        align-items: center;
+        gap: 0.75rem;
+        margin-left: 0 !important;
+        padding-left: 0.25rem;
+        white-space: nowrap;
+        pointer-events: auto !important;
+    }
+
+    .tablet-nav a {
+        font-size: 1.45rem !important;
+        padding: 0 4px !important;
+        letter-spacing: 0.05rem !important;
+        color: #fff;
+        transition: color 0.2s ease, transform 0.2s ease;
+        pointer-events: auto !important;
+    }
+
+    .tablet-nav a:hover {
+        color: #ff3b3b !important;
+        transform: scale(1.20);
+    }
+
+    /* Tablet icons */
+    .tablet-icons {
+        display: flex !important;
+        gap: 1.2rem !important;
+        position: absolute;
+        right: 12px !important;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: auto !important;
+    }
+
+    .tablet-icons a {
+        font-size: 1.55rem !important;
+        color: #fff;
+        transition: color 0.2s ease, transform 0.2s ease;
+        pointer-events: auto !important;
+    }
+
+    .tablet-icons a:hover {
+        color: #ff3860 !important;
+        transform: scale(1.25);
+    }
+
+    /* Tablet shows hero name */
+    .hero-name {
+        display: block !important;
+    }
+}
+
+/* ============================================================
+   DESKTOP ( >= 1025px )
+============================================================ */
+@media screen and (min-width: 1025px) {
+
+    #hamburger-button,
+    #mobile-menu,
+    .tablet-nav,
+    .tablet-icons {
+        display: none !important;
+    }
+
+    .desktop-nav {
+        display: flex !important;
+    }
+
+    .desktop-icons {
+        display: flex !important;
+    }
+
+    .header-left .site-name {
+        display: block !important;
+    }
+
+    .hero-name {
+        display: block !important;
+    }
+}
+
+/* ============================================================
+   GLOBAL OVERRIDES TO BEAT DIMENSION
+============================================================ */
+
+/* Ensure header stays active when article is visible */
+body.is-article-visible #site-header {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    pointer-events: auto !important;
+}
+
+/* Auto-hide mobile dropdown when article is open */
+body.is-article-visible #mobile-menu {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Ensure wrapper never covers your header */
+#wrapper {
+    padding-top: 80px !important;
+}
+
