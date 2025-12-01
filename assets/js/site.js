@@ -50,3 +50,15 @@ function enableLazyFadeIn() {
         img.onload = () => img.classList.add("loaded");
     });
 }
+
+// Add fade-in class when images load
+// Add fade-in class when images load
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".gallery-grid img").forEach(img => {
+        if (img.complete) {
+            img.classList.add("loaded");
+        } else {
+            img.onload = () => img.classList.add("loaded");
+        }
+    });
+});

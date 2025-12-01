@@ -1,153 +1,124 @@
 /* ============================================================
-   GALLERY ARTICLE WIDTH
-============================================================ */
-#gallery {
-    max-width: 90vw !important;
-    margin: 0 auto;
-}
-
-/* ============================================================
-   GRID LAYOUT
-============================================================ */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-/* ============================================================
-   THUMBNAILS
-============================================================ */
-.gallery-grid img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: 12px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.4s ease;
-    opacity: 0;
-}
-
-/* Smooth fade-in */
-.gallery-grid img.loaded {
-    opacity: 1;
-}
-
-/* Hover pop */
-.gallery-grid img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 22px rgba(0,0,0,0.30);
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-grid img {
-        height: 260px;
-    }
-}
-
-/* /\* ============================================================ */
-/*    LIGHTBOX FROSTED CAPTION STYLE */
-/* ============================================================ *\/ */
-/* .glightbox-clean .gdesc-inner { */
-/*     background: rgba(32, 32, 32, 0) !important; /\* transparent grey *\/ */
-/*     /\* backdrop-filter: blur(12px) !important;       /\\* glass effect *\\/ *\/ */
-/*     /\* -webkit-backdrop-filter: blur(12px) !important; *\/ */
-/*     /\* color: #fff !important; *\/ */
-/*     /\* color: #808080 !important; *\/ */
-/*     /\* border-radius: 12px !important; *\/ */
-/*     /\* padding: 15px 20px !important; *\/ */
-/*     /\* margin-bottom: 20px !important; *\/ */
-/*     /\* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important; *\/ */
-/* } */
-
-/* /\* Remove borders and white backgrounds completely *\/ */
-/* .glightbox-clean .gdesc-inner::before { */
-/*     display: none !important; */
-/* } */
+     GALLERY — DESKTOP WIDTH
+     Article should fill ~90% of the screen
+  ============================================================ */
+  #gallery {
+      max-width: 90vw !important;
+      margin: 0 auto;
+      padding-bottom: 2rem;
+  }
 
 
+  /* ============================================================
+     GALLERY GRID LAYOUT
+  ============================================================ */
+  .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);   /* 3 columns desktop */
+      gap: 16px;
+      width: 100%;
+      margin: 0 auto;
+  }
 
-/* /\* ============================================================ */
-/*    FLOATING CAPTION — bottom center, no background */
-/* ============================================================ *\/ */
 
-/* .glightbox-clean .gdesc, */
-/* .gdesc { */
-/*     width: 100%; */
-/*     text-align: center; */
-/*     position: absolute; */
-/*     bottom: 3%;                  /\* adjust vertical position *\/ */
-/*     left: 50%; */
-/*     transform: translateX(-50%); */
-/*     background: black !important; */
-/*     padding: 0 !important; */
-/*     margin: 0 !important; */
-/*     border: none !important; */
-/*     box-shadow: none !important; */
-/* } */
+  /* ============================================================
+     THUMBNAILS — FIT, CENTER, ROUNDED, POP-OUT ANIMATION
+  ============================================================ */
+  .gallery-grid img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 10px;
 
-/* /\* Caption text *\/ */
-/* .glightbox-clean .gdesc-inner, */
-/* .gdesc-inner { */
-/*     background: none !important; */
-/*     box-shadow: none !important; */
-/*     padding: 0 !important; */
-/*     margin: 0 auto !important; */
-/*     color: #000000 !important; */
-/*     font-size: 1.25rem;          /\* tweak size *\/ */
-/*     font-weight: 500; */
-/*     text-shadow: 0 2px 8px rgba(0,0,0,0.65); /\* readability *\/ */
-/* } */
+      /* pop-out + shadow on hover */
+      transition: 
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          opacity 0.4s ease;
+      
+      /* smooth fade-in when loading */
+      opacity: 0;
+  }
 
-/* /\* Kill the pseudo-element background GLightbox injects *\/ */
-/* .gdesc-inner::before { */
-/*     display: none !important; */
-/*     background: black !important; */
-/* } */
+  .gallery-grid img.loaded {
+      opacity: 1;
+  }
 
-/* Remove ALL backgrounds behind captions, all layers */
-.gslide-description,
-.gslide-description .gdesc,
-.gslide-description .gdesc-inner,
-.gslide-description::before,
-.gdesc::before,
-.gdesc-inner::before {
-    background: none !important;
-    box-shadow: none !important;
-    border: none !important;
+  .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  }
+
+
+/* ===========================================
+   REMOVE DEFAULT GLIGHTBOX WHITE BACKGROUND
+=========================================== */
+.glightbox-clean .gslide-description {
+    background: transparent !important;
 }
 
 
-/* Floating caption centered at bottom */
-.gslide-description {
+/* ===========================================
+   FROSTED FLOATING CAPTION (BOTTOM-CENTER)
+   - small, text-width only
+   - transparent grey w/ blur
+=========================================== */
+
+.gslide-description
+{
     position: absolute !important;
     bottom: 3%;
     left: 50%;
     transform: translateX(-50%);
-    width: auto;
-    max-width: 80%;
-    pointer-events: none !important;
+    width: auto !important;
+    max-width: 80%;               /* prevents huge text lines */
+    pointer-events: none;         /* ensures clicks go to navigation */
     text-align: center;
 }
 
+
 .gdesc-inner {
-    background: rgba(0, 0, 0, 0.5) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 12px 18px !important;
-    border-radius: 12px;
+    background: rgba(40, 40, 40, 0.35) !important; /* ← transparent grey (35% opacity) */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    padding: 10px 16px !important;
+    border-radius: 14px !important;
     color: #fff !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    display: inline-block !important;     /* ← makes box fit ONLY to text */
+    margin: 0 auto !important;
+    pointer-events: none;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
+
+/* Remove leftover pseudo-element background */
+.gdesc-inner::before {
+    display: none !important;
+}
+
+/* ===========================================
+   FORCE CAPTION TEXT COLOR (Title + Description)
+=========================================== */
+
+/* Title (from data-title) */
+.gslide-title {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Description (from data-description) */
+.gslide-desc {
+    color: #ffffff !important;
+    opacity: 0.9;             /* optional, softer look */
+}
+
+/* Make all caption text inherit white if GLightbox wraps it */
+.gdesc-inner * {
+    color: #ffffff !important;
+}
+
+
+
+
