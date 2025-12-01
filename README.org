@@ -1,5 +1,178 @@
 #+title: README
-#+author: Dennis H. Calderon
+#+author: Dennis H. Calderón
 #+created: <2025-11-30 Sun>
+#+options: toc:3 num:nil
+#+startup: indent
 
-This is a test
+* Overview
+This repository contains the complete source code for my personal academic
+website hosted at: https://dhcalderon.com
+
+The site is built using the *HTML5 UP Dimension* template as the base layout,
+then heavily customized with:
+
+- a fully redesigned, responsive fixed header
+- mobile/tablet menus
+- section-based content loading
+- a custom gallery with GLightbox
+- separate CSS modules for maintainability
+- a custom 404 error page
+
+The structure is modular so that all user-facing content lives in easy-to-edit
+locations.
+
+----
+
+* Repository Structure
+
+#+begin_src text
+/
+├── index.html                 ← main site shell (fixed header + containers)
+├── 404.html                   ← custom fun 404 page
+├── assets/
+│   ├── css/
+│   │   ├── main.css           ← base Dimension CSS (modified)
+│   │   ├── header.css         ← custom responsive header + menu
+│   │   ├── article.css        ← per-article layout overrides
+│   │   ├── gallery.css        ← grid, hover effects, captions, GLightbox styling
+│   │   ├── 404.css            ← standalone styles for 404 page
+│   │   └── noscript.css
+│   ├── js/
+│   │   ├── main.js            ← original Dimension behavior engine
+│   │   ├── site.js            ← hamburger menu, section loader, GLightbox init
+│   │   ├── glightbox.min.js   ← gallery lightbox library
+│   │   └── (jquery/util/browser libs included)
+│   └── fonts/                 ← Font Awesome
+│
+├── sections/
+│   ├── about.html             ← About content
+│   ├── research.html          ← Research content
+│   ├── teaching.html          ← Teaching / Mentorship content
+│   ├── service.html           ← Service / Community engagement content
+│   ├── cv.html                ← CV summary + download link
+│   ├── gallery.html           ← photo gallery with GLightbox
+│   └── contact.html           ← contact + social icons
+│
+├── images/
+│   ├── personal/              ← Personal photos (family, portraits)
+│   ├── research/              ← HELIX + science images
+│   ├── gallery/               ← Gallery photos (events, workshops, etc.)
+│   └── gorilla_profile.png    ← watermark used in 404 page
+│
+└── documents/
+    └── Calderon_CV.pdf
+#+end_src
+
+----
+
+* How the Site Works
+
+**1. ==index.html== is the base skeleton**
+The site header, wrappers, navigation, and empty article containers live here.
+
+**2. ==site.js== dynamically loads user content**
+Each `<article id="...">` is populated from =sections/<id>.html=:
+
+#+begin_src javascript
+fetch(`sections/${id}.html`)
+#+end_src
+
+This keeps =index.html= clean and makes editing sections painless.
+
+**3. The fixed header is controlled by =header.css=**
+This includes:
+- desktop navigation bar
+- tablet layout
+- mobile hamburger menu + dropdown
+- icon styling (GitHub, LinkedIn, Email, CCAPP profile)
+
+**4. Articles get custom spacing via =article.css=**
+This keeps each section consistent across screen sizes.
+
+----
+
+* Gallery System (GLightbox)
+
+A custom image gallery is implemented using *GLightbox*, with:
+
+- a responsive 3–2–1 column grid
+- hover pop-out effect + subtle shadows
+- lazy-loading (via =loading="lazy"= on images)
+- frosted-glass caption overlay on full-size images
+- custom styling in =gallery.css=
+
+GLightbox is included via:
+
+#+begin_src html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+#+end_src
+
+Initialization happens in =site.js= after gallery content loads.
+
+----
+
+* Custom 404 Page
+
+The repository includes a playful 404 page with:
+- full-screen blurred gorilla watermark 
+- Star Wars–themed messaging
+- bottom-centered return button
+
+Style for this page is entirely in:
+
+#+begin_src text
+assets/css/404.css
+#+end_src
+
+GitHub Pages automatically uses =404.html= when an invalid path is visited.
+
+----
+
+* Local Development with Docker (Optional)
+A lightweight local web server can be run using NGINX via Docker.
+
+Example snippet:
+
+#+begin_src yaml
+services:
+  mysite:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./ :/usr/share/nginx/html:ro
+#+end_src
+
+Start server:
+
+#+begin_src bash
+docker compose up
+#+end_src
+
+Visit the local site at http://localhost:8080  
+Hard-refresh for changes: *Ctrl+Shift+R*
+
+----
+
+* Where to Edit Content
+
+| Content Type     | Location                       |
+|------------------+--------------------------------|
+| About page       | =sections/about.html=          |
+| Research         | =sections/research.html=       |
+| Teaching         | =sections/teaching.html=       |
+| Service          | =sections/service.html=        |
+| CV Summary       | =sections/cv.html=             |
+| Photo Gallery    | =sections/gallery.html=        |
+| Contact Page     | =sections/contact.html=        |
+| Images           | =images/...=                   |
+| Styles           | =assets/css/...=               |
+| JavaScript       | =assets/js/...=                |
+
+----
+
+* License
+This website uses the "Dimension" HTML5 UP template under the CCA 3.0 license.  
+All custom modifications, writing, and imagery are © Dennis H. Calderón.
+
