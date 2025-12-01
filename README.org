@@ -61,8 +61,6 @@ locations.
     └── Calderon_CV.pdf
 #+end_src
 
-----
-
 * How the Site Works
 
 *1. =index.html= is the base skeleton*
