@@ -21,8 +21,6 @@ then heavily customized with:
 The structure is modular so that all user-facing content lives in easy-to-edit
 locations.
 
-----
-
 * Repository Structure
 
 #+begin_src text
@@ -67,10 +65,10 @@ locations.
 
 * How the Site Works
 
-**1. ==index.html== is the base skeleton**
+*1. =index.html= is the base skeleton*
 The site header, wrappers, navigation, and empty article containers live here.
 
-**2. ==site.js== dynamically loads user content**
+*2. =site.js= dynamically loads user content*
 Each `<article id="...">` is populated from =sections/<id>.html=:
 
 #+begin_src javascript
@@ -79,17 +77,15 @@ fetch(`sections/${id}.html`)
 
 This keeps =index.html= clean and makes editing sections painless.
 
-**3. The fixed header is controlled by =header.css=**
+*3. The fixed header is controlled by* =header.css=
 This includes:
 - desktop navigation bar
 - tablet layout
 - mobile hamburger menu + dropdown
 - icon styling (GitHub, LinkedIn, Email, CCAPP profile)
 
-**4. Articles get custom spacing via =article.css=**
+*4. Articles get custom spacing via* =article.css=
 This keeps each section consistent across screen sizes.
-
-----
 
 * Gallery System (GLightbox)
 
@@ -110,8 +106,6 @@ GLightbox is included via:
 
 Initialization happens in =site.js= after gallery content loads.
 
-----
-
 * Custom 404 Page
 
 The repository includes a playful 404 page with:
@@ -126,8 +120,6 @@ assets/css/404.css
 #+end_src
 
 GitHub Pages automatically uses =404.html= when an invalid path is visited.
-
-----
 
 * Local Development with Docker (Optional)
 A lightweight local web server can be run using NGINX via Docker.
@@ -150,10 +142,11 @@ Start server:
 docker compose up
 #+end_src
 
-Visit the local site at http://localhost:8080  
-Hard-refresh for changes: *Ctrl+Shift+R*
+Visit the local site at:
+[[http://localhost:8080]]
 
-----
+Hard-refresh for changes:
+*Ctrl+Shift+R*
 
 * Where to Edit Content
 
@@ -169,8 +162,6 @@ Hard-refresh for changes: *Ctrl+Shift+R*
 | Images           | =images/...=                   |
 | Styles           | =assets/css/...=               |
 | JavaScript       | =assets/js/...=                |
-
-----
 
 * License
 This website uses the "Dimension" HTML5 UP template under the CCA 3.0 license.  
