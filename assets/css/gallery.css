@@ -1,0 +1,68 @@
+/* ============================================================
+   GALLERY GRID — 2 Columns on desktop/tablet, 1 column on mobile
+============================================================ */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Each gallery item */
+.gallery-grid a {
+    display: block;
+    overflow: hidden;
+    border-radius: 12px;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Image styles */
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    object-fit: cover;
+    border-radius: 12px;
+
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* Hover effects */
+.gallery-grid a:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+.gallery-grid a:hover img {
+    transform: scale(1.08);
+    opacity: 0.9;
+}
+
+/* ============================================================
+   Prevent Dimension from closing the article during GLightbox
+============================================================ */
+.glightbox-open #main {
+    pointer-events: none !important;   /* Disable Dimension click-to-close */
+}
+
+.glightbox-open .glightbox-container,
+.glightbox-open .goverlay {
+    pointer-events: auto !important;   /* Allow clicks inside GLightbox */
+}
+
+/* Ensures overlay fills entire view */
+.goverlay {
+    pointer-events: auto !important;
+}
+
+/* ============================================================
+   Optional — make fullscreen image fade beautifully
+============================================================ */
+.glightbox-clean .gslide-desc,
+.glightbox-clean .gslide-title {
+    color: #fff !important;
+}
