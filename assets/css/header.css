@@ -299,3 +299,26 @@ body.is-article-visible #mobile-menu {
     padding-top: 80px !important;
 }
 
+
+
+/* ============================================================
+   CONTACT SECTION — CENTERED SOCIAL ICONS
+============================================================ */
+.contact-social {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 32px;             /* space between icons */
+}
+
+.contact-social a {
+    font-size: 2.2rem;     /* same size as your header icons */
+    color: #ffffff;
+    opacity: 0.85;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.contact-social a:hover {
+    opacity: 1;
+    transform: translateY(-4px);
+}

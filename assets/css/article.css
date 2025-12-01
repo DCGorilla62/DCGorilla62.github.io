@@ -34,22 +34,6 @@
    IMAGE CONTROL (About, Research, etc.)
 ============================================================ */
 
-/* /\* Resize images inside articles *\/ */
-/* #main article img.custom-img { */
-/*     width: 60%;                  /\* adjust size *\/ */
-/*     max-width: 500px;            /\* hard limit *\/ */
-/*     border-radius: 12px;         /\* rounded corners *\/ */
-/*     display: block; */
-/*     margin: 0 auto 2rem auto;    /\* center + spacing below *\/ */
-/* } */
-
-/* /\* For full-width banner-style images *\/ */
-/* #main article img.fullwidth-img { */
-/*     width: 100%; */
-/*     border-radius: 0.75rem; */
-/* } */
-
-
 /* Make the About page photo smaller */
 .article-photo {
     width: 80%;          /* adjust this size */
@@ -69,4 +53,33 @@
     .about-photo {
         width: 100%;   /* full width on phone */
     }
+}
+
+
+/* ============================================================
+   CV SECTION — CENTERED DOWNLOAD BUTTON
+============================================================ */
+
+#cv {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+/* Wrapper that stays at bottom of the article */
+.cv-download-wrapper {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Optional: Make the button pop a little on hover */
+.cv-download-wrapper .button {
+    transform: translateY(0);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cv-download-wrapper .button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }

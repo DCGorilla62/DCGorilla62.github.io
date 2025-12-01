@@ -1,0 +1,94 @@
+/* ============================================================
+   404 PAGE EXCLUSIVE STYLES
+   (background watermark + top-aligned title + bottom button)
+============================================================ */
+
+/* Full-page layout */
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+  background: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* top + bottom spacing */
+  align-items: center;
+  position: relative;
+}
+
+/* Giant watermark gorilla */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../../images/gorilla_profile.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  opacity: 0.20;
+  filter: blur(1px);
+  z-index: 0;
+}
+
+/* Foreground content container */
+#content {
+  position: relative;
+  z-index: 10;
+  margin-top: 3rem;
+  white-space: nowrap;        /* keep “Hello there!” on one line */
+}
+
+/* Title */
+h1 {
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 15px rgba(255,255,255,0.18);
+}
+
+/* Subtitle */
+p {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Bottom button */
+#return-button {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 3rem;
+}
+
+a.button-404 {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: #ff3b3b;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.button-404:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 18px rgba(255, 59, 59, 0.6);
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  body::before {
+    background-size: 120%;
+    opacity: 0.12;
+  }
+  h1 { font-size: 3rem; }
+  p { font-size: 1.1rem; }
+}
