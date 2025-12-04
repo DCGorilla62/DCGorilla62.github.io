@@ -138,3 +138,57 @@
 .gdesc-inner * {
     color: #ffffff !important;
 }
+
+
+/* ============================================================
+   GALLERY GRID LAYOUT
+   - Desktop: 3 columns
+   - Tablet: 2 columns
+   - Mobile: 1 column
+============================================================ */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* desktop default */
+    gap: 1rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Tablet (768–1024px): 2 columns */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile (≤ 767px): now 1 column */
+@media screen and (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* MOBILE FIX — gallery uses the same spacing as articles */
+@media screen and (max-width: 767px) {
+
+    #gallery {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        margin: 0 auto !important;
+        width: 98% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* TABLET FIX — gallery matches article spacing */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    #gallery {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
