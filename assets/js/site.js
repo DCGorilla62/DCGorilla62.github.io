@@ -1,18 +1,55 @@
-/* MOBILE HAMBURGER MENU */
-document.addEventListener("DOMContentLoaded", () => {
-    const hamburger = document.getElementById("hamburger-button");
-    const menu = document.getElementById("mobile-menu");
+/* ========================================================================
+   SITE.JS — Custom Logic Layer for Dimension
+   Handles:
+     - Mobile Hamburger Menu
+     - Safe Header Navigation
+     - Section Loader
+     - Gallery Lightbox
+     - Lazy Fade-in
+======================================================================== */
 
-    if (hamburger && menu) {
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ------------------------------------------------------------
+       1) MOBILE HAMBURGER MENU
+    ------------------------------------------------------------ */
+    const hamburger = document.getElementById("hamburger-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (hamburger && mobileMenu) {
         hamburger.addEventListener("click", () => {
-            menu.style.display =
-                menu.style.display === "block" ? "none" : "block";
+            const open = mobileMenu.style.display === "block";
+            mobileMenu.style.display = open ? "none" : "block";
         });
     }
-});
 
-/* LOAD SECTIONS + INIT LIGHTBOX WHEN GALLERY LOADS */
-document.addEventListener("DOMContentLoaded", () => {
+    /* ------------------------------------------------------------
+       2) FIX: HEADER LINKS SHOULD OPEN/CLOSE ARTICLES CORRECTLY
+          (Dimension default behavior is broken without this)
+    ------------------------------------------------------------ */
+    const headerLinks = document.querySelectorAll('#site-header a[href^="#"]');
+
+    headerLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+            const target = this.getAttribute("href"); // "#about", etc.
+
+            if (!target || target === "#") return;
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (location.hash === target) {
+                location.hash = "#";   // closes article
+            } else {
+                location.hash = target; // opens article
+            }
+        });
+    });
+
+    /* ------------------------------------------------------------
+       3) LOAD SECTIONS (sections/about.html, etc.)
+          IMPORTANT: This runs AFTER navigation fix
+    ------------------------------------------------------------ */
     const articles = document.querySelectorAll("#main article");
 
     articles.forEach(article => {
@@ -28,11 +65,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     enableLazyFadeIn();
                 }
             })
-            .catch(err => console.warn(`Missing section: ${id}`));
+            .catch(() => console.warn(`Missing section: ${id}`));
     });
+
+    /* ------------------------------------------------------------
+       4) LAZY FADE-IN for images loaded immediately on page load
+    ------------------------------------------------------------ */
+    document.querySelectorAll(".gallery-grid img").forEach(img => {
+        if (img.complete) img.classList.add("loaded");
+        else img.onload = () => img.classList.add("loaded");
+    });
+
 });
 
-/* INIT GLIGHTBOX */
+/* ========================================================================
+   FUNCTIONS
+======================================================================== */
+
+/* Lightbox initializer */
 function initGalleryLightbox() {
     GLightbox({
         selector: ".glightbox",
@@ -43,22 +93,10 @@ function initGalleryLightbox() {
     });
 }
 
-/* LAZY LOAD + SMOOTH FADE-IN */
+/* Lazy fade-in for dynamically loaded gallery images */
 function enableLazyFadeIn() {
     document.querySelectorAll(".gallery-grid img").forEach(img => {
         img.loading = "lazy";
         img.onload = () => img.classList.add("loaded");
     });
 }
-
-// Add fade-in class when images load
-// Add fade-in class when images load
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".gallery-grid img").forEach(img => {
-        if (img.complete) {
-            img.classList.add("loaded");
-        } else {
-            img.onload = () => img.classList.add("loaded");
-        }
-    });
-});

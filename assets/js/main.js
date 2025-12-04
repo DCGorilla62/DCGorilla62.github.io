@@ -400,33 +400,3 @@
 
 })(jQuery);
 
-/* ============================================================
-   FIX — Make #site-header links safely control Dimension articles
-   Uses location.hash so Dimension's own logic does all the work
-============================================================ */
-
-(function() {
-    const headerLinks = document.querySelectorAll('#site-header a[href^="#"]');
-
-    headerLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            const target = this.getAttribute('href');  // e.g. "#about", "#work"
-
-            // Ignore empty or "#" only
-            if (!target || target === '#') return;
-
-            e.preventDefault();
-            e.stopPropagation();
-
-            // If clicking the same section that's already active,
-            // close it by clearing the hash (Dimension will hide it)
-            if (location.hash === target) {
-                location.hash = '#';
-            }
-            else {
-                // Normal behavior: go to that article
-                location.hash = target;
-            }
-        });
-    });
-})();
