@@ -101,114 +101,171 @@ body:before {
 }
 
 
-/* /\* ============================================================ */
-/*    DEBUG MODE — Visual Layout + Breakpoint Inspector */
-/*    Safe to toggle on/off without affecting production styles. */
-/* ============================================================ *\/ */
+/* ============================================================
+   CV DEBUG — Column Grid, Spacing, and Section Visualization
+   Attach ONLY to #cv and its children.
+============================================================ */
 
-/* /\* ------------------------------ */
-/*    A) COLOR-CODED MAJOR REGIONS */
-/* ------------------------------ *\/ */
-/* #site-header { */
-/*     border: 3px solid red !important; */
-/* } */
+/* --- Highlight the entire CV wrapper --- */
+#cv {
+    outline: 3px solid rgba(0, 200, 255, 0.6) !important;
+    background: rgba(0, 200, 255, 0.05) !important;
+}
 
-/* #header { */
-/*     border: 3px solid blue !important; */
-/* } */
+/* --- Highlight the two-column grid area --- */
+.cv-columns {
+    outline: 3px dashed rgba(255, 200, 0, 0.8) !important;
+    background: rgba(255, 200, 0, 0.06) !important;
+    position: relative;
+}
 
-/* #wrapper { */
-/*     border: 3px solid green !important; */
-/* } */
+/* --- Show the auto-generated vertical divider --- */
+.cv-columns::after {
+    background: rgba(255, 100, 0, 0.8) !important;  /* brighter */
+}
 
-/* #main { */
-/*     border: 3px solid orange !important; */
-/* } */
+/* --- Highlight left & right columns individually --- */
+.cv-col {
+    outline: 2px solid rgba(0, 255, 100, 0.8) !important;
+    background: rgba(0, 255, 100, 0.07) !important;
+}
 
-/* footer { */
-/*     border: 3px solid purple !important; */
-/* } */
+/* --- Visualize section headers --- */
+#cv h3 {
+    outline: 2px dashed rgba(255, 0, 200, 0.9) !important;
+    background: rgba(255, 0, 200, 0.08) !important;
+    padding: 0.25rem !important;
+}
 
-/* /\* Optional: Background overlays for clarity *\/ */
-/* #site-header { */
-/*     background: rgba(255, 0, 0, 0.08) !important; */
-/* } */
-/* #header { */
-/*     background: rgba(0, 0, 255, 0.06) !important; */
-/* } */
-/* #wrapper { */
-/*     background: rgba(0, 255, 0, 0.06) !important; */
-/* } */
-/* #main { */
-/*     background: rgba(255, 165, 0, 0.06) !important; */
-/* } */
-/* footer { */
-/*     background: rgba(128, 0, 128, 0.06) !important; */
-/* } */
+/* --- Visualize lists --- */
+#cv ul {
+    outline: 1px dashed rgba(0, 150, 255, 0.9) !important;
+    background: rgba(0, 150, 255, 0.05) !important;
+    padding: 0.5rem !important;
+}
 
+/* --- Visualize individual li spacing --- */
+#cv li {
+    outline: 1px solid rgba(150, 150, 255, 0.8) !important;
+    background: rgba(150, 150, 255, 0.1) !important;
+}
 
-/* /\* ============================================================ */
-/*    B) BREAKPOINT LABEL OVERLAYS */
-/*    Shows MOBILE / TABLET / DESKTOP at top-left. */
-/* ============================================================ *\/ */
+/* --- Visualize the separators --- */
+.cv-section-separator {
+    background: rgba(255, 0, 0, 0.6) !important;
+    height: 3px !important; /* thicker for visibility */
+}
 
-/* /\* Base overlay style *\/ */
-/* body:before { */
-/*     position: fixed; */
-/*     top: 0.5rem; */
-/*     left: 0.5rem; */
-/*     padding: 0.4rem 0.6rem; */
-/*     font-size: 1rem; */
-/*     font-weight: bold; */
-/*     z-index: 9999; */
-/*     color: #fff; */
-/*     border-radius: 0.25rem; */
-/*     font-family: monospace; */
-/*     pointer-events: none; */
-/*     content: ""; */
-/* } */
+/* --- Visualize the download button wrapper --- */
+.cv-download-wrapper {
+    outline: 2px dashed rgba(200, 0, 100, 0.9) !important;
+    background: rgba(200, 0, 100, 0.08) !important;
+    padding: 1rem !important;
+}
 
-/* /\* 📱 MOBILE — ≤ 767px *\/ */
-/* @media (max-width: 767px) { */
-/*     body:before { */
-/*         content: "MOBILE (≤ 767px)"; */
-/*         background: rgba(255, 0, 0, 0.85); */
-/*     } */
-/* } */
-
-/* /\* 📱📱 TABLET — 768px–1024px *\/ */
-/* @media (min-width: 768px) and (max-width: 1024px) { */
-/*     body:before { */
-/*         content: "TABLET (768–1024px)"; */
-/*         background: rgba(255, 165, 0, 0.85); */
-/*     } */
-/* } */
-
-/* /\* 🖥️ DESKTOP — ≥ 1025px *\/ */
-/* @media (min-width: 1025px) { */
-/*     body:before { */
-/*         content: "DESKTOP (≥ 1025px)"; */
-/*         background: rgba(0, 128, 0, 0.85); */
-/*     } */
-/* } */
+/* --- Visualize intro paragraph --- */
+.cv-intro {
+    outline: 2px solid rgba(100, 255, 200, 0.8) !important;
+    background: rgba(100, 255, 200, 0.1) !important;
+    padding: 1rem !important;
+}
 
 
-/* /\* ============================================================ */
-/*    C) OPTIONAL: OUTLINES FOR EVERY ELEMENT */
-/*    Great for seeing nested spacing or weird layout flow. */
-/*    Uncomment to use. */
-/* ============================================================ *\/ */
+/* ============================================================
+   CV DEBUG LABEL SYSTEM
+   Adds floating labels to identify every structural region.
+============================================================ */
 
-/* { */
-/*     outline: 1px dashed rgba(255, 0, 255, 0.2); */
-/* } */
+/* Shared label style */
+.cv-debug-label {
+    position: absolute;
+    top: -0.8rem;
+    left: 0;
+    background: rgba(255, 0, 200, 0.85);
+    color: #fff;
+    padding: 0.1rem 0.4rem;
+    font-size: 0.65rem;
+    font-family: monospace;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 999999 !important;
+    text-transform: uppercase;
+}
+
+/* Wrapper outline for debugging */
+.cv-debug-box {
+    position: relative;
+    outline: 2px dashed rgba(255, 0, 150, 0.8);
+    margin-bottom: 1rem;
+    padding: 0.75rem !important;
+    background: rgba(255, 0, 255, 0.05);
+}
 
 
-/* /\* ============================================================ */
-/*    D) OPTIONAL: INNER PADDING DEBUG (tiny dashed edges) */
-/*    Add class="debug-box" to any element you want inspected. */
-/* ============================================================ *\/ */
+/* Label major CV container */
+#cv.cv-debug {
+    outline: 3px solid rgba(0, 200, 255, 0.8);
+}
+#cv.cv-debug::before {
+    content: "CV ROOT (#cv)";
+    position: absolute;
+    top: -1.2rem;
+    left: 0;
+    padding: 0.2rem 0.5rem;
+    background: rgba(0, 200, 255, 0.9);
+    color: #000;
+    font-weight: bold;
+    font-size: 0.75rem;
+    font-family: monospace;
+}
 
-/* .debug-box { */
-/*     outline: 2px dashed magenta !important; */
-/* } */
+/* Label columns */
+.cv-col {
+    position: relative;
+}
+.cv-col::before {
+    content: "CV COLUMN";
+    position: absolute;
+    top: -1.2rem;
+    left: 0;
+    padding: 0.2rem 0.5rem;
+    background: rgba(255, 100, 0, 0.9);
+    color: #fff;
+    font-family: monospace;
+    font-size: 0.7rem;
+}
+
+#cv h3.cv-debug-section {
+    outline: 2px dashed rgba(0, 255, 150, 0.8);
+    background: rgba(0, 255, 150, 0.1);
+}
+#cv h3.cv-debug-section::after {
+    content: "SECTION HEADER (h3)";
+    position: absolute;
+    right: 0;
+    top: -0.9rem;
+    background: rgba(0, 255, 150, 0.85);
+    color: #000;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+#cv ul.cv-debug-ul {
+    outline: 2px solid rgba(0, 120, 255, 0.8);
+    background: rgba(0, 120, 255, 0.05);
+    position: relative;
+}
+#cv ul.cv-debug-ul::before {
+    content: "LIST (ul)";
+    position: absolute;
+    top: -0.9rem;
+    left: 0;
+    background: rgba(0, 120, 255, 0.85);
+    color: #fff;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+}
