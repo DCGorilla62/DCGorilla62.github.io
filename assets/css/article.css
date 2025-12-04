@@ -1,58 +1,137 @@
 /* ============================================================
-   ARTICLE WIDTH CUSTOMIZATION (Desktop + Tablet)
+   ARTICLE WIDTH CUSTOMIZATION (Desktop / Tablet / Mobile)
+   Consistent breakpoints + rem-based layout sizing
 ============================================================ */
 
-/* Desktop */
-@media screen and (min-width: 981px) {
+/* ------------------------------
+   DESKTOP (>= 1025px)
+------------------------------ */
+@media screen and (min-width: 1025px) {
     #main > article {
         width: 90% !important;
-        max-width: 1400px !important;
+
+        /* 1400px → 87.5rem */
+        max-width: 87.5rem !important;
+
         margin: 0 auto !important;
         padding: 2rem 2rem !important;
     }
 }
 
-/* Tablet */
-@media screen and (min-width: 768px) and (max-width: 980px) {
+/* ------------------------------
+   TABLET (768px – 1024px)
+------------------------------ */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
     #main > article {
         width: 90% !important;
-        max-width: 1200px !important;
+
+        /* 1200px → 75rem */
+        max-width: 75rem !important;
+
         margin: 0 auto !important;
         padding: 2.5rem !important;
     }
 }
 
-/* Mobile (leave almost as-is) */
+/* ------------------------------
+   MOBILE (<= 767px)
+   Wider article — takes up most of screen width
+------------------------------ */
 @media screen and (max-width: 767px) {
     #main > article {
-        width: 90% !important;
+        width: 95vw !important;
+        max-width: 95vw !important;
+        margin: 0 auto !important;
         padding: 1.5rem !important;
     }
 }
 
+
 /* ============================================================
-   IMAGE CONTROL (About, Research, etc.)
+   IMAGE TEMPLATES — Portrait / Landscape / Square
+   Unified margins, rem-based sizing, responsive behavior
 ============================================================ */
 
-/* Make the About page photo smaller */
-.article-photo {
-    width: 80%;          /* adjust this size */
-    max-width: 700px;    /* prevents huge images */
+/* Shared image styles */
+.img-portrait,
+.img-landscape,
+.img-square {
     display: block;
-    margin: 0 auto;      /* center the image */
-    border-radius: 14px; /* optional: rounded corners */
-    box-shadow: 0 6px 16px rgba(0,0,0,0.20);
+    margin: 0 auto 1.5rem;                   /* unified spacing */
+    border-radius: 0.875rem;                 /* 14px → 0.875rem */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.20); /* keep px-shadow */
+    object-fit: cover;
+    object-position: center;
 }
 
-.about-photo {
-    width: 80%;
-    max-width: 600px;
+/* ------------------------------
+   1. PORTRAIT IMAGE TEMPLATE
+------------------------------ */
+.img-portrait {
+    width: 70%;
+    max-width: 32rem;                        /* ~512px */
+    max-height: 80vh;
 }
 
-@media (max-width: 768px) {
-    .about-photo {
-        width: 100%;   /* full width on phone */
+@media screen and (max-width: 767px) {
+    .img-portrait {
+        width: 90%;
+        max-width: 90%;
+        max-height: 65vh;
     }
+}
+
+/* ------------------------------
+   2. LANDSCAPE IMAGE TEMPLATE
+------------------------------ */
+.img-landscape {
+    width: 100%;
+    max-width: 60rem;                        /* ~960px */
+    height: auto;
+}
+
+@media screen and (max-width: 767px) {
+    .img-landscape {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* ------------------------------
+   3. SQUARE IMAGE TEMPLATE
+------------------------------ */
+.img-square {
+    width: 60%;
+    max-width: 32rem;                        /* ~512px */
+    aspect-ratio: 1 / 1;
+}
+
+@media screen and (max-width: 767px) {
+    .img-square {
+        width: 80%;
+        max-width: 80%;
+    }
+}
+
+
+/* ============================================================
+   OPTIONAL FIGURE STYLE — img-frame
+   Adds padding, border, and document-like frame
+============================================================ */
+.img-frame {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;                     /* slightly larger frame */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    backdrop-filter: blur(4px);
+}
+
+/* Remove double-shadow when stacked with templates */
+.img-frame.img-portrait,
+.img-frame.img-landscape,
+.img-frame.img-square {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
 
@@ -66,20 +145,20 @@
     min-height: 100%;
 }
 
-/* Wrapper that stays at bottom of the article */
 .cv-download-wrapper {
     margin-top: 2rem;
     display: flex;
     justify-content: center;
 }
 
-/* Optional: Make the button pop a little on hover */
 .cv-download-wrapper .button {
     transform: translateY(0);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cv-download-wrapper .button:hover {
-    transform: translateY(-3px);
+    /* 3px → 0.1875rem */
+    transform: translateY(-0.1875rem);
+
     box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }

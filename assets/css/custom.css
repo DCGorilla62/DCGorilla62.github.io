@@ -1,14 +1,12 @@
 /* ============================================================
-   CUSTOM HERO + PHOTO + SPACING FIXES
-   Overrides Dimension header spacing for use with your fixed
-   #site-header (mobile/tablet) and styles your portrait + images.
+   CUSTOM HERO + PHOTO + SPACING FIXES (REM + PX BREAKPOINTS)
 ============================================================ */
 
 /* ------------------------------
-   PERSONAL PHOTO (Desktop + Mobile)
+   PERSONAL PHOTO
 ------------------------------ */
 .personal-photo {
-    width: 420px;
+    width: 17.5rem;              /* 280px */
     max-width: 90vw;
     height: auto;
     aspect-ratio: 280 / 330;
@@ -16,6 +14,7 @@
     border-radius: 50%;
     display: block;
     margin: 0 auto;
+    /* keep shadows in px for crisp rendering */
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     transition: box-shadow 0.3s ease;
 }
@@ -31,13 +30,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2em;
+    gap: 1.2em;                  
     text-align: center;
-    padding: 2.25em 1.25em;
+    padding: 2.25rem 1.25rem;     /* 36px 20px */
 }
 
 #header .inner p {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5rem;        /* 24px */
 }
 
 /* ------------------------------
@@ -45,14 +44,14 @@
 ------------------------------ */
 .intro-images {
     display: flex;
-    gap: 12px;
-    margin-bottom: 1.25em;
+    gap: 0.75rem;                 /* 12px */
+    margin-bottom: 1.25rem;       /* 20px */
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .intro-images img {
-    border-radius: 4px;
+    border-radius: 0.25rem;       /* 4px */
     max-width: 100%;
     height: auto;
 }
@@ -61,7 +60,7 @@
 @media (max-width: 480px) {
     .intro-images {
         flex-direction: column;
-        gap: 0.75em;
+        gap: 0.75rem;
     }
 
     .intro-images img {
@@ -71,7 +70,6 @@
 
 /* ============================================================
    SPACING FIXES FOR FIXED #site-header
-   (Mobile + Tablet)
 ============================================================ */
 
 /* ------------------------------
@@ -79,13 +77,11 @@
 ------------------------------ */
 @media screen and (max-width: 767px) {
 
-    /* Space under fixed header */
     #wrapper {
         justify-content: flex-start !important;
         padding-top: 0 !important;
     }
 
-    /* Remove Dimension’s huge margins */
     #header > * {
         margin-top: 1rem !important;
     }
@@ -94,13 +90,11 @@
         display: none !important;
     }
 
-    /* Inner padding */
     #header .content .inner {
         padding-top: 1rem !important;
         padding-bottom: 1.5rem !important;
     }
 
-    /* Pull hero upward to meet fixed header */
     #header {
         margin-top: 0 !important;
         position: relative;
@@ -109,7 +103,7 @@
 }
 
 /* ------------------------------
-   TABLET (768–1024px)
+   TABLET (768px – 1024px)
 ------------------------------ */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
@@ -128,27 +122,23 @@
 
     #header .content .inner {
         padding-top: 1.25rem !important;
-        padding-bottom: 2rem !important;
+        padding-bottom: 2rem !important; 
     }
 }
 
 /* ============================================================
-   UNIVERSAL (≤ 1024px) — FINAL OVERRIDES
-   These ALWAYS override Dimension on both tablet + mobile.
+   UNIVERSAL OVERRIDES (≤ 1024px)
 ============================================================ */
 @media screen and (max-width: 1024px) {
 
-    /* Reduce giant spacing between hero elements */
     #header > * {
         margin-top: 0.5rem !important;
     }
 
-    /* Remove Dimension header pseudo-gap */
     #header > *:before {
         display: none !important;
     }
 
-    /* Tighter hero box */
     #header .content .inner {
         padding-top: 0.75rem !important;
         padding-bottom: 1.25rem !important;
@@ -156,17 +146,7 @@
         padding-right: 1.25rem !important;
     }
 
-    /* Space below fixed #site-header */
     #wrapper {
-        padding-top: 60px !important;   /* adjust 50–70px */
+        padding-top: 3.75rem !important; /* 60px */
     }
 }
-
-/* ============================================================
-   OPTIONAL DEBUGGING VISUALS
-============================================================ */
-/*
-@media screen and (max-width: 767px)   { #header { border: 5px solid red !important; } }
-@media screen and (min-width: 768px) and (max-width: 1024px) { #header { border: 5px solid red !important; } }
-@media screen and (min-width: 1024px) { #header { border: 5px solid red !important; } }
-*/

@@ -1,124 +1,140 @@
 /* ============================================================
-     GALLERY — DESKTOP WIDTH
-     Article should fill ~90% of the screen
-  ============================================================ */
-  #gallery {
-      max-width: 90vw !important;
-      margin: 0 auto;
-      padding-bottom: 2rem;
-  }
+   GALLERY — DESKTOP WIDTH
+   Article should fill ~90% of the screen
+============================================================ */
+#gallery {
+    max-width: 90vw !important;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+}
 
 
-  /* ============================================================
-     GALLERY GRID LAYOUT
-  ============================================================ */
-  .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);   /* 3 columns desktop */
-      gap: 16px;
-      width: 100%;
-      margin: 0 auto;
-  }
+/* ============================================================
+   GALLERY GRID LAYOUT
+   - Desktop: 3 columns
+   - Tablet: 2 columns
+   - Mobile: 2 columns
+============================================================ */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* desktop default */
+    gap: 1rem;                               /* 16px → 1rem */
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Tablet (768–1024px): 2 columns */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile (≤ 767px): 2 columns */
+@media screen and (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
 
-  /* ============================================================
-     THUMBNAILS — FIT, CENTER, ROUNDED, POP-OUT ANIMATION
-  ============================================================ */
-  .gallery-grid img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 10px;
+/* ============================================================
+   THUMBNAILS — FIT, CENTER, ROUNDED, POP-OUT ANIMATION
+============================================================ */
+.gallery-grid img {
+    width: 100%;
 
-      /* pop-out + shadow on hover */
-      transition: 
-          transform 0.25s ease,
-          box-shadow 0.25s ease,
-          opacity 0.4s ease;
-      
-      /* smooth fade-in when loading */
-      opacity: 0;
-  }
+    /* 240px → 15rem (consistent scale) */
+    height: 15rem;
 
-  .gallery-grid img.loaded {
-      opacity: 1;
-  }
+    object-fit: cover;
+    object-position: center;
 
-  .gallery-grid img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-  }
+    /* 10px → 0.625rem */
+    border-radius: 0.625rem;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.4s ease;
+
+    opacity: 0; /* fade-in animation */
+}
+
+.gallery-grid img.loaded {
+    opacity: 1;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+
+    /* keep px for shadow blur fidelity */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
 
 
-/* ===========================================
+/* ============================================================
    REMOVE DEFAULT GLIGHTBOX WHITE BACKGROUND
-=========================================== */
+============================================================ */
 .glightbox-clean .gslide-description {
     background: transparent !important;
 }
 
 
-/* ===========================================
+/* ============================================================
    FROSTED FLOATING CAPTION (BOTTOM-CENTER)
-   - small, text-width only
-   - transparent grey w/ blur
-=========================================== */
-
-.gslide-description
-{
+============================================================ */
+.gslide-description {
     position: absolute !important;
     bottom: 3%;
     left: 50%;
     transform: translateX(-50%);
     width: auto !important;
-    max-width: 80%;               /* prevents huge text lines */
-    pointer-events: none;         /* ensures clicks go to navigation */
+    max-width: 80%;
+    pointer-events: none;
     text-align: center;
 }
 
-
 .gdesc-inner {
-    background: rgba(40, 40, 40, 0.35) !important; /* ← transparent grey (35% opacity) */
+    background: rgba(40, 40, 40, 0.35) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
-    padding: 10px 16px !important;
-    border-radius: 14px !important;
+
+    /* 10px 16px → 0.625rem 1rem */
+    padding: 0.625rem 1rem !important;
+
+    /* 14px → 0.875rem */
+    border-radius: 0.875rem !important;
+
     color: #fff !important;
     font-size: 0.95rem;
     line-height: 1.4;
-    display: inline-block !important;     /* ← makes box fit ONLY to text */
+    display: inline-block !important;
     margin: 0 auto !important;
+
     pointer-events: none;
     text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
-/* Remove leftover pseudo-element background */
 .gdesc-inner::before {
     display: none !important;
 }
 
-/* ===========================================
-   FORCE CAPTION TEXT COLOR (Title + Description)
-=========================================== */
 
-/* Title (from data-title) */
+/* ============================================================
+   FORCE CAPTION TEXT COLOR (Title + Description)
+============================================================ */
 .gslide-title {
     color: #ffffff !important;
     font-weight: 600;
 }
 
-/* Description (from data-description) */
 .gslide-desc {
     color: #ffffff !important;
-    opacity: 0.9;             /* optional, softer look */
+    opacity: 0.9;
 }
 
-/* Make all caption text inherit white if GLightbox wraps it */
+/* Ensure no rogue text color appears */
 .gdesc-inner * {
     color: #ffffff !important;
 }
-
-
-
-

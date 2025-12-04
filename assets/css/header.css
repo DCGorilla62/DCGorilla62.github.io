@@ -1,6 +1,6 @@
 /* ============================================================
    HEADER SYSTEM — Custom Responsive Layout for Dennis
-   Dimension core CSS remains untouched.
+   All element sizing in REM, breakpoints remain in PX.
 ============================================================ */
 
 /* Hide these by default (explicitly shown in breakpoints) */
@@ -17,21 +17,24 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 50px;
+
+    /* 50px → 3.125rem */
+    height: 3.125rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+    /* padding: 0 1.5rem (already perfect) */
     padding: 0 1.5rem;
+
     background: rgba(34,34,34,0.85);
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #fff;   /* keep px for crispness */
     color: #fff;
 
     animation: slideInHeader 0.6s ease-out forwards;
     transform: translateY(-100%);
 
-    /* Always above Dimension */
     z-index: 99999 !important;
     pointer-events: auto !important;
 }
@@ -63,8 +66,11 @@
 
 .desktop-nav a {
     font-size: 1.2rem;
+
+    /* 10px → 0.625rem */
+    padding: 0 0.625rem;
+
     color: #fff;
-    padding: 0 10px;
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
@@ -75,7 +81,9 @@
 
 /* Desktop icons */
 .desktop-icons a {
-    margin-left: 12px;
+    /* 12px → 0.75rem */
+    margin-left: 0.75rem;
+
     font-size: 1.4rem;
     color: #fff;
     transition: color 0.2s ease, transform 0.2s ease;
@@ -85,6 +93,7 @@
     color: #ff3860;
     transform: scale(1.25);
 }
+
 
 /* ============================================================
    MOBILE ( <= 767px )
@@ -103,7 +112,10 @@
     #hamburger-button {
         display: block;
         position: absolute;
-        left: 14px;
+
+        /* 14px → 0.875rem */
+        left: 0.875rem;
+
         top: 50%;
         transform: translateY(-50%);
         background: none;
@@ -111,6 +123,7 @@
         font-size: 2rem;
         color: #fff;
         cursor: pointer;
+
         pointer-events: auto !important;
         z-index: 100001;
     }
@@ -119,12 +132,17 @@
     .header-left .site-name {
         display: block !important;
         position: absolute;
-        right: 14px;
-        top: 0;
-        height: 50px;
-        line-height: 50px;
+
+        /* 14px → 0.875rem */
+        right: 0.875rem;
+
+        /* height: 50px → 3.125rem */
+        height: 3.125rem;
+        line-height: 3.125rem;
+
         font-size: 1.35rem;
         font-weight: 600;
+
         pointer-events: auto !important;
         z-index: 100001;
     }
@@ -133,11 +151,17 @@
     #mobile-menu {
         display: none;
         position: absolute;
-        top: 50px;
+
+        /* top: 50px → 3.125rem */
+        top: 3.125rem;
+
         left: 0;
         width: 100%;
         background: rgba(0,0,0,0.95);
+
+        /* 0.5rem is fine */
         padding-top: 0.5rem;
+
         z-index: 100000;
         text-align: center;
         pointer-events: auto !important;
@@ -148,7 +172,10 @@
     #mobile-menu a {
         display: block;
         padding: 1rem;
+
+        /* 1px stays px */
         border-bottom: 1px solid rgba(255,255,255,0.1);
+
         font-size: 1.25rem;
         color: #fff;
         text-decoration: none;
@@ -165,12 +192,12 @@
     }
 }
 
+
 /* ============================================================
    TABLET / IPAD (768–1024px)
 ============================================================ */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
-    /* Hide desktop + mobile elements */
     .desktop-nav,
     .desktop-icons,
     #hamburger-button,
@@ -181,7 +208,6 @@
     /* Align nav left */
     #site-header {
         justify-content: flex-start !important;
-        pointer-events: auto !important;
     }
 
     .header-center {
@@ -194,22 +220,20 @@
     /* Tablet nav */
     .tablet-nav {
         display: flex !important;
-        justify-content: flex-start !important;
-        align-items: center;
         gap: 0.75rem;
-        margin-left: 0 !important;
         padding-left: 0.25rem;
         white-space: nowrap;
-        pointer-events: auto !important;
     }
 
     .tablet-nav a {
         font-size: 1.45rem !important;
-        padding: 0 4px !important;
+
+        /* 4px → 0.25rem */
+        padding: 0 0.25rem !important;
+
         letter-spacing: 0.05rem !important;
         color: #fff;
         transition: color 0.2s ease, transform 0.2s ease;
-        pointer-events: auto !important;
     }
 
     .tablet-nav a:hover {
@@ -221,18 +245,20 @@
     .tablet-icons {
         display: flex !important;
         gap: 1.2rem !important;
+
         position: absolute;
-        right: 12px !important;
+
+        /* 12px → 0.75rem */
+        right: 0.75rem !important;
+
         top: 50%;
         transform: translateY(-50%);
-        pointer-events: auto !important;
     }
 
     .tablet-icons a {
         font-size: 1.55rem !important;
         color: #fff;
         transition: color 0.2s ease, transform 0.2s ease;
-        pointer-events: auto !important;
     }
 
     .tablet-icons a:hover {
@@ -243,6 +269,34 @@
     /* Tablet shows hero name */
     .hero-name {
         display: block !important;
+    }
+}
+
+/* ============================================================
+   TABLET-COMPACT (768px–900px)
+   Prevent nav from overlapping social icons
+============================================================ */
+@media screen and (min-width: 768px) and (max-width: 900px) {
+
+    /* Slightly reduce nav text + horizontal padding */
+    .tablet-nav a {
+        font-size: 1.15rem !important;
+        padding: 0 0.25rem !important;
+    }
+
+    /* Reduce gap between items */
+    .tablet-nav {
+        gap: 0.5rem !important;
+    }
+
+    /* Slightly reduce icon size */
+    .tablet-icons a {
+        font-size: 1.35rem !important;
+    }
+
+    /* Shrink spacing between icons */
+    .tablet-icons {
+        gap: 0.75rem !important;
     }
 }
 
@@ -275,44 +329,43 @@
     }
 }
 
+
 /* ============================================================
    GLOBAL OVERRIDES TO BEAT DIMENSION
 ============================================================ */
 
-/* Ensure header stays active when article is visible */
 body.is-article-visible #site-header {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
-    pointer-events: auto !important;
 }
 
-/* Auto-hide mobile dropdown when article is open */
 body.is-article-visible #mobile-menu {
     display: none !important;
     opacity: 0 !important;
     pointer-events: none !important;
 }
 
-/* Ensure wrapper never covers your header */
+/* wrapper padding: 80px → 5rem */
 #wrapper {
-    padding-top: 80px !important;
+    padding-top: 5rem !important;
 }
 
 
-
 /* ============================================================
-   CONTACT SECTION — CENTERED SOCIAL ICONS
+   CONTACT SECTION
 ============================================================ */
 .contact-social {
     margin-top: 2.5rem;
     display: flex;
     justify-content: center;
-    gap: 32px;             /* space between icons */
+
+    /* 32px → 2rem */
+    gap: 2rem;
 }
 
 .contact-social a {
-    font-size: 2.2rem;     /* same size as your header icons */
+    font-size: 2.2rem;
     color: #ffffff;
     opacity: 0.85;
     transition: opacity 0.25s ease, transform 0.25s ease;
@@ -320,5 +373,7 @@ body.is-article-visible #mobile-menu {
 
 .contact-social a:hover {
     opacity: 1;
-    transform: translateY(-4px);
+
+    /* 4px → 0.25rem */
+    transform: translateY(-0.25rem);
 }
