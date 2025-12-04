@@ -1,9 +1,7 @@
-/* ============================================================
-   HEADER SYSTEM — Custom Responsive Layout for Dennis
-   All element sizing in REM, breakpoints remain in PX.
-============================================================ */
-
-/* Hide these by default (explicitly shown in breakpoints) */
+/* =====================================================================
+   GLOBAL DEFAULTS
+   (hidden items until their breakpoint activates)
+===================================================================== */
 #hamburger-button,
 .tablet-nav,
 .tablet-icons,
@@ -11,39 +9,27 @@
     display: none;
 }
 
-/* Base header wrapper */
+/* Header container */
 #site-header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-
-    /* 50px → 3.125rem */
-    height: 3.125rem;
-
+    top: 0; left: 0; right: 0;
+    height: 3.125rem; /* 50px */
+    padding: 0 1.5rem;
+    background: rgba(34,34,34,0.85);
+    border-bottom: 2px solid #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    /* padding: 0 1.5rem (already perfect) */
-    padding: 0 1.5rem;
-
-    background: rgba(34,34,34,0.85);
-    border-bottom: 2px solid #fff;   /* keep px for crispness */
-    color: #fff;
-
+    z-index: 99999;
     animation: slideInHeader 0.6s ease-out forwards;
     transform: translateY(-100%);
-
-    z-index: 99999 !important;
-    pointer-events: auto !important;
 }
 
 @keyframes slideInHeader {
     to { transform: translateY(0); }
 }
 
-/* Shared header regions */
+/* Structural regions */
 .header-left,
 .header-center,
 .header-right {
@@ -51,14 +37,14 @@
     align-items: center;
 }
 
-/* Desktop name */
+/* Desktop site name */
 .site-name {
     font-size: 1.5rem;
     font-weight: bold;
     white-space: nowrap;
 }
 
-/* Desktop nav */
+/* Desktop nav links */
 .desktop-nav {
     display: flex;
     gap: 1rem;
@@ -66,41 +52,46 @@
 
 .desktop-nav a {
     font-size: 1.2rem;
-
-    /* 10px → 0.625rem */
     padding: 0 0.625rem;
-
     color: #fff;
     transition: color 0.2s ease, transform 0.2s ease;
 }
-
 .desktop-nav a:hover {
     color: #e63946;
     transform: scale(1.18);
 }
 
 /* Desktop icons */
-.desktop-icons a {
-    /* 12px → 0.75rem */
-    margin-left: 0.75rem;
+.desktop-icons {
+    display: flex;
+    gap: 0.75rem;
+}
 
+.desktop-icons a {
     font-size: 1.4rem;
     color: #fff;
     transition: color 0.2s ease, transform 0.2s ease;
 }
-
 .desktop-icons a:hover {
     color: #ff3860;
     transform: scale(1.25);
 }
 
+@media (min-width: 1025px) {
+    .site-name:hover {
+        color: #ff3860;
+        transform: scale(1.08);
+        transition: 0.2s ease;
+    }
+}
 
-/* ============================================================
-   MOBILE ( <= 767px )
-============================================================ */
-@media screen and (max-width: 767px) {
 
-    /* Hide desktop & tablet UI */
+/* =====================================================================
+   MOBILE PORTRAIT  ( ≤ 767px )
+===================================================================== */
+@media (max-width: 767px) {
+
+    /* Hide desktop/tablet header items */
     .desktop-nav,
     .desktop-icons,
     .tablet-nav,
@@ -108,14 +99,11 @@
         display: none !important;
     }
 
-    /* Hamburger visible on left */
+    /* Show hamburger */
     #hamburger-button {
         display: block;
         position: absolute;
-
-        /* 14px → 0.875rem */
         left: 0.875rem;
-
         top: 50%;
         transform: translateY(-50%);
         background: none;
@@ -123,187 +111,155 @@
         font-size: 2rem;
         color: #fff;
         cursor: pointer;
-
-        pointer-events: auto !important;
         z-index: 100001;
     }
 
-    /* Name aligned right */
+    /* Show the name on the right */
     .header-left .site-name {
         display: block !important;
         position: absolute;
-
-        /* 14px → 0.875rem */
         right: 0.875rem;
-
-        /* height: 50px → 3.125rem */
         height: 3.125rem;
         line-height: 3.125rem;
-
         font-size: 1.35rem;
         font-weight: 600;
-
-        pointer-events: auto !important;
-        z-index: 100001;
+        white-space: nowrap;
     }
 
-    /* Mobile dropdown menu */
+    /* Default portrait dropdown menu */
     #mobile-menu {
         display: none;
         position: absolute;
-
-        /* top: 50px → 3.125rem */
         top: 3.125rem;
-
         left: 0;
         width: 100%;
         background: rgba(0,0,0,0.95);
-
-        /* 0.5rem is fine */
         padding-top: 0.5rem;
-
         z-index: 100000;
         text-align: center;
-        pointer-events: auto !important;
-        opacity: 1;
-        transition: opacity 0.25s ease;
     }
 
     #mobile-menu a {
         display: block;
         padding: 1rem;
-
-        /* 1px stays px */
         border-bottom: 1px solid rgba(255,255,255,0.1);
-
         font-size: 1.25rem;
         color: #fff;
         text-decoration: none;
-        pointer-events: auto !important;
     }
 
     #mobile-menu a:hover {
         background: rgba(255,255,255,0.08);
     }
 
-    /* Hide mobile hero name */
-    .hero-name {
-        display: none !important;
-    }
+    .hero-name { display: none !important; }
 }
 
 
-/* ============================================================
-   TABLET / IPAD (768–1024px)
-============================================================ */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+/* =====================================================================
+   MOBILE LANDSCAPE ( ≤ 767px width AND ≤ 500px height )
+   → 2-column GRID menu
+===================================================================== */
+@media (max-width: 767px) and (max-height: 500px) {
 
+    /* When JS toggles display:block, switch to grid */
+    #mobile-menu[style*="display: block"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem 1rem;
+        padding: 1rem;
+        overflow-y: auto;
+        max-height: calc(100vh - 3.125rem);
+        background: rgba(0,0,0,0.95);
+    }
+
+    #mobile-menu[style*="display: block"] a {
+        padding: 0.75rem;
+        font-size: 1.1rem;
+        text-align: center;
+        border-bottom: none;
+        background: rgba(255,255,255,0.05);
+        border-radius: 0.5rem;
+    }
+
+    /* Custom ordering — LEFT then RIGHT column */
+    #mobile-menu > a:nth-child(1) { order: 1; } /* About */
+    #mobile-menu > a:nth-child(2) { order: 2; } /* Research */
+    #mobile-menu > a:nth-child(3) { order: 3; } /* Teaching */
+    #mobile-menu > a:nth-child(4) { order: 4; } /* Service */
+    #mobile-menu > a:nth-child(5) { order: 5; } /* CV */
+    #mobile-menu > a:nth-child(6) { order: 6; } /* Gallery */
+    #mobile-menu > a:nth-child(7) { order: 7; } /* Contact */
+}
+
+
+/* =====================================================================
+   TABLET ( 768px – 1024px )
+===================================================================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Hide desktop & mobile elements */
     .desktop-nav,
     .desktop-icons,
     #hamburger-button,
+    #mobile-menu,
     .header-left .site-name {
         display: none !important;
     }
 
-    /* Align nav left */
+    /* Tablet header uses flex */
     #site-header {
-        justify-content: flex-start !important;
+        justify-content: left !important;
     }
 
-    .header-center {
-        flex: 1 1 auto;
-        display: flex;
-        justify-content: flex-start !important;
-        align-items: center;
-    }
-
-    /* Tablet nav */
+    /* Tablet nav centered */
     .tablet-nav {
         display: flex !important;
-        gap: 0.75rem;
-        padding-left: 0.25rem;
-        white-space: nowrap;
+        gap: 0.5rem;
     }
 
     .tablet-nav a {
-        font-size: 1.45rem !important;
-
-        /* 4px → 0.25rem */
-        padding: 0 0.25rem !important;
-
-        letter-spacing: 0.05rem !important;
+        font-size: 1.4rem;
+        padding: 0 0.4rem;
         color: #fff;
-        transition: color 0.2s ease, transform 0.2s ease;
     }
 
     .tablet-nav a:hover {
-        color: #ff3b3b !important;
-        transform: scale(1.20);
+        color: #ff3b3b;
+        transform: scale(1.12);
     }
 
-    /* Tablet icons */
+    /* Tablet social icons to the right */
     .tablet-icons {
         display: flex !important;
-        gap: 1.2rem !important;
-
+        gap: 0.5rem;
         position: absolute;
-
-        /* 12px → 0.75rem */
-        right: 0.75rem !important;
-
+        right: 1rem;
         top: 50%;
         transform: translateY(-50%);
     }
 
+    .hero-name { display: block !important; }
+}
+
+/* ============================================================
+   TABLET — Larger Social Icons
+============================================================ */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
     .tablet-icons a {
-        font-size: 1.55rem !important;
-        color: #fff;
-        transition: color 0.2s ease, transform 0.2s ease;
+        font-size: 1.6rem !important;
     }
 
     .tablet-icons a:hover {
-        color: #ff3860 !important;
-        transform: scale(1.25);
-    }
-
-    /* Tablet shows hero name */
-    .hero-name {
-        display: block !important;
+        transform: scale(1.35) !important;
     }
 }
 
-/* ============================================================
-   TABLET-COMPACT (768px–900px)
-   Prevent nav from overlapping social icons
-============================================================ */
-@media screen and (min-width: 768px) and (max-width: 900px) {
 
-    /* Slightly reduce nav text + horizontal padding */
-    .tablet-nav a {
-        font-size: 1.15rem !important;
-        padding: 0 0.25rem !important;
-    }
-
-    /* Reduce gap between items */
-    .tablet-nav {
-        gap: 0.5rem !important;
-    }
-
-    /* Slightly reduce icon size */
-    .tablet-icons a {
-        font-size: 1.35rem !important;
-    }
-
-    /* Shrink spacing between icons */
-    .tablet-icons {
-        gap: 0.75rem !important;
-    }
-}
-
-/* ============================================================
-   DESKTOP ( >= 1025px )
-============================================================ */
-@media screen and (min-width: 1025px) {
+/* =====================================================================
+   DESKTOP ( >= 1025px ) — FINAL VERIFIED CORRECT
+===================================================================== */
+@media (min-width: 1025px) {
 
     #hamburger-button,
     #mobile-menu,
@@ -312,68 +268,79 @@
         display: none !important;
     }
 
-    .desktop-nav {
+    #site-header {
         display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0 1.5rem !important;
     }
 
-    .desktop-icons {
+    /* LEFT: Name */
+    .header-left {
         display: flex !important;
+        align-items: center !important;
     }
 
     .header-left .site-name {
         display: block !important;
     }
 
-    .hero-name {
-        display: block !important;
+    /* CENTER: Nav */
+    .header-center {
+        display: flex !important;
+        justify-content: center !important;
+        flex: 1;
+    }
+
+    .desktop-nav {
+        display: flex !important;
+        gap: 1rem;
+    }
+
+    /* RIGHT: Icons */
+    .desktop-icons {
+        display: flex !important;
+        gap: 0.75rem;
     }
 }
 
 
-/* ============================================================
-   GLOBAL OVERRIDES TO BEAT DIMENSION
-============================================================ */
-
+/* =====================================================================
+   OVERRIDES FOR DIMENSION
+===================================================================== */
 body.is-article-visible #site-header {
     opacity: 1 !important;
     transform: none !important;
-    filter: none !important;
 }
 
 body.is-article-visible #mobile-menu {
     display: none !important;
     opacity: 0 !important;
-    pointer-events: none !important;
 }
 
-/* wrapper padding: 80px → 5rem */
 #wrapper {
     padding-top: 5rem !important;
 }
 
 
-/* ============================================================
-   CONTACT SECTION
-============================================================ */
-.contact-social {
-    margin-top: 2.5rem;
-    display: flex;
-    justify-content: center;
 
-    /* 32px → 2rem */
-    gap: 2rem;
-}
+@media screen and (max-width: 767px) and (max-height: 500px) {
+    #mobile-menu[style*="display: block"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem 1rem;
+        padding: 1rem;
+        overflow-y: auto;
+        max-height: calc(100vh - 3.125rem);
+    }
 
-.contact-social a {
-    font-size: 2.2rem;
-    color: #ffffff;
-    opacity: 0.85;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.contact-social a:hover {
-    opacity: 1;
-
-    /* 4px → 0.25rem */
-    transform: translateY(-0.25rem);
+    #mobile-menu[style*="display: block"] a {
+        display: block !important;
+        padding: 0.75rem;
+        font-size: 1.1rem;
+        border-bottom: none !important;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 0.5rem;
+    }
 }

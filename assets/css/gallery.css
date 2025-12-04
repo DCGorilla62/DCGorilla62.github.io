@@ -1,6 +1,5 @@
 /* ============================================================
-   GALLERY — DESKTOP WIDTH
-   Article should fill ~90% of the screen
+   GALLERY — Outer Wrapper Width
 ============================================================ */
 #gallery {
     max-width: 90vw !important;
@@ -8,57 +7,23 @@
     padding-bottom: 2rem;
 }
 
-
 /* ============================================================
-   GALLERY GRID LAYOUT
-   - Desktop: 3 columns
-   - Tablet: 2 columns
-   - Mobile: 2 columns
-============================================================ */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* desktop default */
-    gap: 1rem;                               /* 16px → 1rem */
-    width: 100%;
-    margin: 0 auto;
-}
-
-/* Tablet (768–1024px): 2 columns */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Mobile (≤ 767px): 2 columns */
-@media screen and (max-width: 767px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-/* ============================================================
-   THUMBNAILS — FIT, CENTER, ROUNDED, POP-OUT ANIMATION
+   THUMBNAILS — Fit, Shape, Pop Animation
 ============================================================ */
 .gallery-grid img {
     width: 100%;
-
-    /* 240px → 15rem (consistent scale) */
-    height: 15rem;
-
+    height: 15rem;                  /* consistent thumbnail height */
     object-fit: cover;
     object-position: center;
 
-    /* 10px → 0.625rem */
-    border-radius: 0.625rem;
+    border-radius: 0.625rem;        /* 10px */
 
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease,
         opacity 0.4s ease;
 
-    opacity: 0; /* fade-in animation */
+    opacity: 0;                     /* fade-in default */
 }
 
 .gallery-grid img.loaded {
@@ -67,14 +32,12 @@
 
 .gallery-grid img:hover {
     transform: scale(1.05);
-
-    /* keep px for shadow blur fidelity */
     box-shadow: 0 6px 16px rgba(0,0,0,0.25);
 }
 
 
 /* ============================================================
-   REMOVE DEFAULT GLIGHTBOX WHITE BACKGROUND
+   REMOVE DEFAULT GLIGHTBOX WHITE PANEL
 ============================================================ */
 .glightbox-clean .gslide-description {
     background: transparent !important;
@@ -82,7 +45,7 @@
 
 
 /* ============================================================
-   FROSTED FLOATING CAPTION (BOTTOM-CENTER)
+   FROSTED FLOATING CAPTION
 ============================================================ */
 .gslide-description {
     position: absolute !important;
@@ -91,8 +54,8 @@
     transform: translateX(-50%);
     width: auto !important;
     max-width: 80%;
-    pointer-events: none;
     text-align: center;
+    pointer-events: none;
 }
 
 .gdesc-inner {
@@ -100,58 +63,42 @@
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
 
-    /* 10px 16px → 0.625rem 1rem */
-    padding: 0.625rem 1rem !important;
-
-    /* 14px → 0.875rem */
-    border-radius: 0.875rem !important;
+    padding: 0.625rem 1rem !important;   /* 10px 16px */
+    border-radius: 0.875rem !important;  /* 14px */
 
     color: #fff !important;
     font-size: 0.95rem;
     line-height: 1.4;
-    display: inline-block !important;
-    margin: 0 auto !important;
 
-    pointer-events: none;
     text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    display: inline-block !important;
+    pointer-events: none;
 }
 
 .gdesc-inner::before {
     display: none !important;
 }
 
-
-/* ============================================================
-   FORCE CAPTION TEXT COLOR (Title + Description)
-============================================================ */
-.gslide-title {
-    color: #ffffff !important;
-    font-weight: 600;
-}
-
-.gslide-desc {
-    color: #ffffff !important;
-    opacity: 0.9;
-}
-
-/* Ensure no rogue text color appears */
+.gslide-title,
+.gslide-desc,
 .gdesc-inner * {
-    color: #ffffff !important;
+    color: #fff !important;
 }
 
-
 /* ============================================================
-   GALLERY GRID LAYOUT
-   - Desktop: 3 columns
-   - Tablet: 2 columns
-   - Mobile: 1 column
+   GALLERY GRID LAYOUT — FINAL, CLEAN VERSION
+   Desktop = 3 columns
+   Tablet = 2 columns
+   Mobile Portrait = 1 column
+   Mobile Landscape = 2 columns
 ============================================================ */
+
+/* Desktop (default): 3 columns */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* desktop default */
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     width: 100%;
-    margin: 0 auto;
 }
 
 /* Tablet (768–1024px): 2 columns */
@@ -161,34 +108,43 @@
     }
 }
 
-/* Mobile (≤ 767px): now 1 column */
+/* Mobile Portrait (≤ 767px): 1 column */
 @media screen and (max-width: 767px) {
     .gallery-grid {
         grid-template-columns: 1fr;
     }
 }
 
+/* Mobile Landscape: 2 columns */
+@media screen and (max-width: 767px) and (max-height: 500px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
 
-/* MOBILE FIX — gallery uses the same spacing as articles */
+/* ============================================================
+   MATCH ARTICLE SPACING — MOBILE & TABLET
+============================================================ */
+
+/* Mobile spacing */
 @media screen and (max-width: 767px) {
-
     #gallery {
+        width: 98% !important;
+        max-width: 100% !important;
         padding-left: 1rem !important;
         padding-right: 1rem !important;
         margin: 0 auto !important;
-        width: 98% !important;
-        max-width: 100% !important;
     }
 }
 
-/* TABLET FIX — gallery matches article spacing */
+/* Tablet spacing */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-
     #gallery {
         padding-left: 2rem !important;
         padding-right: 2rem !important;
-        margin: 0 auto !important;
         width: 100% !important;
         max-width: 100% !important;
+        margin: 0 auto !important;
     }
 }
+
