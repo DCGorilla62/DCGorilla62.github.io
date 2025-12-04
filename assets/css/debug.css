@@ -3,43 +3,33 @@
    Safe to toggle on/off without affecting production styles.
 ============================================================ */
 
+
 /* ------------------------------
    A) COLOR-CODED MAJOR REGIONS
 ------------------------------ */
+
 #site-header {
     border: 3px solid red !important;
+    background: rgba(255, 0, 0, 0.08) !important;
 }
 
 #header {
     border: 3px solid blue !important;
+    background: rgba(0, 0, 255, 0.06) !important;
 }
 
 #wrapper {
     border: 3px solid green !important;
+    background: rgba(0, 255, 0, 0.06) !important;
 }
 
 #main {
     border: 3px solid orange !important;
+    background: rgba(255, 165, 0, 0.06) !important;
 }
 
 footer {
     border: 3px solid purple !important;
-}
-
-/* Optional: Background overlays for clarity */
-#site-header {
-    background: rgba(255, 0, 0, 0.08) !important;
-}
-#header {
-    background: rgba(0, 0, 255, 0.06) !important;
-}
-#wrapper {
-    background: rgba(0, 255, 0, 0.06) !important;
-}
-#main {
-    background: rgba(255, 165, 0, 0.06) !important;
-}
-footer {
     background: rgba(128, 0, 128, 0.06) !important;
 }
 
@@ -49,7 +39,6 @@ footer {
    Shows MOBILE / TABLET / DESKTOP at top-left.
 ============================================================ */
 
-/* Base overlay style */
 body:before {
     position: fixed;
     top: 0.5rem;
@@ -91,21 +80,135 @@ body:before {
 
 
 /* ============================================================
-   C) OPTIONAL: OUTLINES FOR EVERY ELEMENT
-   Great for seeing nested spacing or weird layout flow.
-   Uncomment to use.
+   C) OPTIONAL FULL-PAGE OUTLINES
+   Outline every element to inspect spacing + nesting
+   Uncomment ONLY when needed.
 ============================================================ */
 
-{
-    outline: 1px dashed rgba(255, 0, 255, 0.2);
+/*
+* {
+    outline: 1px dashed rgba(255, 0, 255, 0.2) !important;
 }
+*/
 
 
 /* ============================================================
-   D) OPTIONAL: INNER PADDING DEBUG (tiny dashed edges)
-   Add class="debug-box" to any element you want inspected.
+   D) DEBUG CLASS — add class="debug-box"
 ============================================================ */
 
 .debug-box {
     outline: 2px dashed magenta !important;
 }
+
+
+/* /\* ============================================================ */
+/*    DEBUG MODE — Visual Layout + Breakpoint Inspector */
+/*    Safe to toggle on/off without affecting production styles. */
+/* ============================================================ *\/ */
+
+/* /\* ------------------------------ */
+/*    A) COLOR-CODED MAJOR REGIONS */
+/* ------------------------------ *\/ */
+/* #site-header { */
+/*     border: 3px solid red !important; */
+/* } */
+
+/* #header { */
+/*     border: 3px solid blue !important; */
+/* } */
+
+/* #wrapper { */
+/*     border: 3px solid green !important; */
+/* } */
+
+/* #main { */
+/*     border: 3px solid orange !important; */
+/* } */
+
+/* footer { */
+/*     border: 3px solid purple !important; */
+/* } */
+
+/* /\* Optional: Background overlays for clarity *\/ */
+/* #site-header { */
+/*     background: rgba(255, 0, 0, 0.08) !important; */
+/* } */
+/* #header { */
+/*     background: rgba(0, 0, 255, 0.06) !important; */
+/* } */
+/* #wrapper { */
+/*     background: rgba(0, 255, 0, 0.06) !important; */
+/* } */
+/* #main { */
+/*     background: rgba(255, 165, 0, 0.06) !important; */
+/* } */
+/* footer { */
+/*     background: rgba(128, 0, 128, 0.06) !important; */
+/* } */
+
+
+/* /\* ============================================================ */
+/*    B) BREAKPOINT LABEL OVERLAYS */
+/*    Shows MOBILE / TABLET / DESKTOP at top-left. */
+/* ============================================================ *\/ */
+
+/* /\* Base overlay style *\/ */
+/* body:before { */
+/*     position: fixed; */
+/*     top: 0.5rem; */
+/*     left: 0.5rem; */
+/*     padding: 0.4rem 0.6rem; */
+/*     font-size: 1rem; */
+/*     font-weight: bold; */
+/*     z-index: 9999; */
+/*     color: #fff; */
+/*     border-radius: 0.25rem; */
+/*     font-family: monospace; */
+/*     pointer-events: none; */
+/*     content: ""; */
+/* } */
+
+/* /\* 📱 MOBILE — ≤ 767px *\/ */
+/* @media (max-width: 767px) { */
+/*     body:before { */
+/*         content: "MOBILE (≤ 767px)"; */
+/*         background: rgba(255, 0, 0, 0.85); */
+/*     } */
+/* } */
+
+/* /\* 📱📱 TABLET — 768px–1024px *\/ */
+/* @media (min-width: 768px) and (max-width: 1024px) { */
+/*     body:before { */
+/*         content: "TABLET (768–1024px)"; */
+/*         background: rgba(255, 165, 0, 0.85); */
+/*     } */
+/* } */
+
+/* /\* 🖥️ DESKTOP — ≥ 1025px *\/ */
+/* @media (min-width: 1025px) { */
+/*     body:before { */
+/*         content: "DESKTOP (≥ 1025px)"; */
+/*         background: rgba(0, 128, 0, 0.85); */
+/*     } */
+/* } */
+
+
+/* /\* ============================================================ */
+/*    C) OPTIONAL: OUTLINES FOR EVERY ELEMENT */
+/*    Great for seeing nested spacing or weird layout flow. */
+/*    Uncomment to use. */
+/* ============================================================ *\/ */
+
+/* { */
+/*     outline: 1px dashed rgba(255, 0, 255, 0.2); */
+/* } */
+
+
+/* /\* ============================================================ */
+/*    D) OPTIONAL: INNER PADDING DEBUG (tiny dashed edges) */
+/*    Add class="debug-box" to any element you want inspected. */
+/* ============================================================ *\/ */
+
+/* .debug-box { */
+/*     outline: 2px dashed magenta !important; */
+/* } */

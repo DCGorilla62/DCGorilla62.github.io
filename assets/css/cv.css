@@ -1,0 +1,353 @@
+/* ============================================================
+   CV — Base Layout & Typography
+============================================================ */
+
+#cv {
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+    line-height: 1.6;
+    color: #fff;
+}
+
+/* Intro paragraph spacing */
+#cv .cv-intro {
+    max-width: 55rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Main title */
+#cv h2.major {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+/* Section headers */
+#cv h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Lists & paragraphs */
+#cv ul,
+#cv p {
+    margin-bottom: 1.25rem;
+}
+
+/* extra bullet spacing */
+#cv li {
+    margin-bottom: 0.35rem;
+}
+
+/* Divider lines */
+.cv-section-separator {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 1.75rem 0;
+}
+
+
+/* ============================================================
+   TWO COLUMN DESKTOP GRID (Manual placement)
+============================================================ */
+
+.cv-columns {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Desktop two-column grid */
+@media screen and (min-width: 1025px) {
+
+    .cv-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        position: relative;
+        padding: 0 1rem;
+    }
+
+    .cv-columns::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background: rgba(255,255,255,0.08);
+    }
+
+    .cv-col {
+        padding: 0 1rem;
+    }
+}
+
+
+/* ============================================================
+   TABLET + MOBILE — collapse to one column cleanly
+============================================================ */
+
+@media screen and (max-width: 1024px) {
+    .cv-columns {
+        gap: 2rem;
+    }
+}
+
+
+/* ============================================================
+   DOWNLOAD BUTTON
+============================================================ */
+
+.cv-download-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.cv-download-wrapper .button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cv-download-wrapper .button:hover {
+    transform: translateY(-0.15rem);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+
+
+/* /\* ============================================================ */
+/*    CV PAGE — Global Layout & Typography */
+/* ============================================================ *\/ */
+
+/* #cv { */
+/*     max-width: 60rem; */
+/*     margin: 0 auto; */
+/*     padding: 1.25rem 1.5rem;   /\* reduced from 2rem *\/ */
+/*     line-height: 1.6; */
+/*     color: #fff; */
+/* } */
+
+/* #cv > p { */
+/*     margin-bottom: 1.75rem; */
+/*     max-width: 50rem; */
+/* } */
+
+/* /\* Title *\/ */
+/* #cv h2.major { */
+/*     text-align: left !important; */
+/*     margin-bottom: 1.5rem; */
+/* } */
+
+/* /\* Section Headers *\/ */
+/* #cv h3 { */
+/*     font-size: 1.15rem; */
+/*     font-weight: 700; */
+/*     text-transform: uppercase; */
+/*     letter-spacing: 0.18rem; */
+/*     margin-top: 1.8rem; */
+/*     margin-bottom: 0.75rem; */
+/*     color: #ffffff; */
+/* } */
+
+/* /\* Bullet spacing *\/ */
+/* #cv ul { */
+/*     margin: 0 0 1.5rem 0; */
+/*     padding-left: 1.2rem; */
+/*     max-width: 48rem; */
+/* } */
+
+/* #cv li { */
+/*     margin-bottom: 0.35rem; */
+/* } */
+
+
+/* /\* ============================================================ */
+/*    Section separators ( subtle ) */
+/* ============================================================ *\/ */
+
+/* .cv-section-separator { */
+/*     height: 1px; */
+/*     width: 100%; */
+/*     background: rgba(255,255,255,0.08); */
+/*     margin: 1.75rem 0; */
+/* } */
+
+
+/* /\* ============================================================ */
+/*    TWO-COLUMN DESKTOP LAYOUT (≥1025px) */
+/* ============================================================ *\/ */
+
+/* @media screen and (min-width: 1025px) { */
+
+/*     #cv { */
+/*         display: grid; */
+/*         grid-template-columns: 1fr 1fr; */
+/*         gap: 2rem;                /\* reduced from 3rem *\/ */
+/*         max-width: 85rem; */
+/*         padding: 1.5rem 2rem; */
+/*     } */
+
+/*     /\* Intro paragraph + title span both columns *\/ */
+/*     #cv h2.major, */
+/*     #cv > p, */
+/*     .cv-download-wrapper { */
+/*         grid-column: 1 / -1; */
+/*     } */
+
+/*     /\* Lists fill column width *\/ */
+/*     #cv ul { */
+/*         max-width: 100%; */
+/*     } */
+/* } */
+
+
+/* /\* ============================================================ */
+/*    MOBILE + TABLET (Single Column) */
+/*    Everything stacks automatically */
+/* ============================================================ *\/ */
+
+/* @media screen and (max-width: 1024px) { */
+/*     #cv { */
+/*         display: block; */
+/*         max-width: 55rem; */
+/*         padding: 1rem 1.25rem; */
+/*     } */
+/* } */
+
+
+/* /\* ============================================================ */
+/*    CV Download Button */
+/* ============================================================ *\/ */
+
+/* .cv-download-wrapper { */
+/*     margin-top: 2.25rem; */
+/*     display: flex; */
+/*     justify-content: center; */
+/* } */
+
+/* .cv-download-wrapper .button { */
+/*     transition: transform 0.2s ease, box-shadow 0.2s ease; */
+/* } */
+
+/* .cv-download-wrapper .button:hover { */
+/*     transform: translateY(-0.15rem); */
+/*     box-shadow: 0 6px 12px rgba(0,0,0,0.25); */
+/* } */
+
+
+
+
+
+
+
+
+/* /\* ============================================================ */
+/*    CV BASE WRAPPER */
+/* ============================================================ *\/ */
+
+/* #cv { */
+/*     width: 100%; */
+/*     max-width: 80rem; */
+/*     margin: 0 auto; */
+/*     padding: 2rem 1.5rem; */
+/*     line-height: 1.6; */
+/* } */
+
+/* /\* Section titles *\/ */
+/* #cv h3 { */
+/*     font-size: 1.1rem; */
+/*     letter-spacing: 0.15rem; */
+/*     text-transform: uppercase; */
+/*     color: #fff; */
+/*     margin-top: 2.5rem; */
+/*     margin-bottom: 1rem; */
+/* } */
+
+/* /\* Section spacing *\/ */
+/* #cv ul, */
+/* #cv p { */
+/*     margin-bottom: 1.75rem; */
+/* } */
+
+/* /\* Light bullet spacing *\/ */
+/* #cv li { */
+/*     margin-bottom: 0.6rem; */
+/* } */
+
+/* /\* Horizontal separators between sections *\/ */
+/* .cv-section-separator { */
+/*     height: 1px; */
+/*     width: 100%; */
+/*     margin: 2.5rem 0; */
+/*     background: rgba(255,255,255,0.08); */
+/* } */
+
+/* /\* ============================================================ */
+/*    TWO COLUMN DESKTOP GRID */
+/* ============================================================ *\/ */
+
+/* .cv-columns { */
+/*     display: flex; */
+/*     flex-direction: column; */
+/* } */
+
+/* /\* Two columns only on desktop *\/ */
+/* @media screen and (min-width: 1025px) { */
+
+/*     .cv-columns { */
+/*         display: grid; */
+/*         grid-template-columns: 1fr 1fr; */
+/*         gap: 3rem; */
+/*         position: relative; */
+/*         padding-right: 1rem; */
+/*         padding-left: 1rem; */
+/*     } */
+
+/*     /\* Subtle vertical divider *\/ */
+/*     .cv-columns::after { */
+/*         content: ""; */
+/*         position: absolute; */
+/*         left: 50%; */
+/*         top: 0; */
+/*         width: 1px; */
+/*         height: 100%; */
+/*         background: rgba(255,255,255,0.08); */
+/*     } */
+
+/*     .cv-col { */
+/*         padding: 0 1rem; */
+/*     } */
+/* } */
+
+/* /\* Collapse to clean single column *\/ */
+/* @media screen and (max-width: 1024px) { */
+/*     .cv-columns { */
+/*         gap: 2rem; */
+/*     } */
+/* } */
+
+/* /\* ============================================================ */
+/*    DOWNLOAD BUTTON */
+/* ============================================================ *\/ */
+
+/* .cv-download-wrapper { */
+/*     display: flex; */
+/*     justify-content: center; */
+/*     margin-top: 3rem; */
+/* } */
+
+/* .cv-download-wrapper .button { */
+/*     transform: translateY(0); */
+/*     transition: transform 0.2s ease, box-shadow 0.2s ease; */
+/* } */
+
+/* .cv-download-wrapper .button:hover { */
+/*     transform: translateY(-0.15rem); */
+/*     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); */
+/* } */

@@ -134,31 +134,3 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-
-/* ============================================================
-   CV SECTION — CENTERED DOWNLOAD BUTTON
-============================================================ */
-
-#cv {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-}
-
-.cv-download-wrapper {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-}
-
-.cv-download-wrapper .button {
-    transform: translateY(0);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.cv-download-wrapper .button:hover {
-    /* 3px → 0.1875rem */
-    transform: translateY(-0.1875rem);
-
-    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-}
