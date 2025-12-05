@@ -1,0 +1,24 @@
+/* ============================================================
+   CONTACT SECTION — Centered, Larger, Balanced Icons
+============================================================ */
+
+.contact-social {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* ensures perfect vertical alignment */
+    gap: 1rem;          /* space between icons */
+}
+
+.contact-social a {
+    font-size: 2.8rem;    /* 🔥 Bigger icons */
+    color: #ffffff;
+    opacity: 0.85;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.contact-social a:hover {
+    opacity: 1;
+    color: #ff3860;
+    transform: translateY(-0.25rem) scale(1.1); /* nice hover lift + grow */
+}
